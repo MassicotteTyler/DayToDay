@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -14,15 +15,21 @@ namespace Component
         /// Method to be called when the object is interacted with.
         /// </summary>
         /// <param name="interactor">The GameObject that triggered the interaction</param>
-       void Interact(GameObject interactor);
-        
+        void Interact(GameObject interactor);
+
         /// <summary>
         /// Method to be called when the object is observed.
         /// </summary>
         /// <param name="observer">The GameObject that triggered the observation</param>
-       void Observer(GameObject observer);
+        void Observe(GameObject observer);
+
+        /// <summary>
+        /// Method to be called when the object is no longer observed.
+        /// </summary>
+        /// <param name="observer">GameObject that observed this object</param>
+        void StopObserving(GameObject observer);
     }
-    
+
     /// <summary>
     /// Component that allows the owning object to interact with interactable objects.
     /// </summary>
@@ -32,20 +39,34 @@ namespace Component
         /// Action to be invoked when the owning object is interacted with.
         /// </summary>
         public UnityEvent<GameObject> onInteract;
-        
+
         /// <summary>
         /// Action to be invoked when the owning object is observed.
         /// </summary>
         public UnityEvent<GameObject> onObserve;
-        
+
+        /// <summary>
+        /// Action to be invoked when the owning object is no longer observed.
+        /// </summary>
+        public UnityEvent<GameObject> onStopObserving;
+
+        [SerializeField] private string interactionLabel = "Interact";
+
         public void Interact(GameObject interactor)
         {
             onInteract?.Invoke(interactor);
         }
 
-        public void Observer(GameObject observer)
+        public void Observe(GameObject observer)
         {
-            onObserve?.Invoke(observer);    
+            onObserve?.Invoke(observer);
+            UIManager.Instance.OnInteractionLabelChanged?.Invoke(interactionLabel);
+        }
+
+        public void StopObserving(GameObject observer)
+        {
+            onStopObserving?.Invoke(observer);
+            UIManager.Instance.OnHideInteractionLabel?.Invoke();
         }
     }
 }

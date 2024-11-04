@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Component
 {
@@ -14,6 +15,12 @@ namespace Component
         /// </summary>
         private bool _isInteracting = false;
         
+        
+        /// <summary>
+        /// Object currently being observed by the interactor.
+        /// </summary>
+        private IInteractable _observedObject;
+        
         /// <summary>
         /// Key to press to interact with objects.
         /// </summary>
@@ -24,6 +31,9 @@ namespace Component
         /// </summary>
         [Range(0, 10)]
         [SerializeField] private float interactDistance = 2f;
+        
+        [RequiredMember]
+        [SerializeField] private Transform _viewPoint;
         
         private void Start()
         {
@@ -39,15 +49,34 @@ namespace Component
         }
         
         /// <summary>
+        /// Casts a ray in front of the interactor to check for interactable objects.
+        /// </summary>
+        /// <param name="hit">RaycastHit result</param>
+        /// <param name="interactable">Interactable component if found</param>
+        /// <returns></returns>
+        private bool LookAtInteractable(out RaycastHit hit, out IInteractable interactable)
+        {
+            var result = Physics.Raycast(_viewPoint.position, _viewPoint.forward, out hit, interactDistance);
+            interactable = hit.collider?.GetComponent<IInteractable>();
+            return result &&  interactable != null;
+        }
+        
+        /// <summary>
         /// Check for interactable objects in front of the player.
         /// </summary>
         private void CheckForInteractable()
         {
-            if (Physics.Raycast(transform.position, transform.forward, out var hit, interactDistance))
+            if (!LookAtInteractable(out var hit, out var interactable))
             {
-                var interactable = hit.collider.GetComponent<IInteractable>();
-                interactable?.Observer(gameObject);
+                _observedObject?.StopObserving(gameObject);
+                _observedObject = null;
+                return;
             }
+            
+            if (_observedObject == interactable) return;
+            _observedObject?.StopObserving(gameObject);
+            _observedObject = interactable;
+            _observedObject?.Observe(gameObject);
         }
         
         /// <summary>
@@ -55,9 +84,8 @@ namespace Component
         /// </summary>
         private void Interact()
         {
-            if (Physics.Raycast(transform.position, transform.forward, out var hit, interactDistance))
+            if (!LookAtInteractable(out var hit, out var interactable)) return;
             {
-                var interactable = hit.collider.GetComponent<IInteractable>();
                 // pass in owner of the interactor component
                 interactable?.Interact(gameObject);
             }

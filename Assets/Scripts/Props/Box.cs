@@ -1,4 +1,5 @@
-﻿using Component;
+﻿using System;
+using Component;
 using UnityEngine;
 
 namespace Props
@@ -20,6 +21,12 @@ namespace Props
         private void Interact(GameObject interactor)
         {
             Debug.Log("Interacting with box");
-        }  
+        }
+
+
+        private void OnDestroy()
+        {
+            _interactableComponent.onInteract?.RemoveListener(Interact);
+        }
     }
 }
