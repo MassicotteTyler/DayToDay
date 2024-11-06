@@ -50,6 +50,9 @@ namespace Component
         /// </summary>
         public UnityEvent<GameObject> onStopObserving;
 
+        /// <summary>
+        /// Label to display when the object is observed.
+        /// </summary>
         [SerializeField] private string interactionLabel = "Interact";
 
         public void Interact(GameObject interactor)
@@ -67,6 +70,11 @@ namespace Component
         {
             onStopObserving?.Invoke(observer);
             UIManager.Instance.OnHideInteractionLabel?.Invoke();
+        }
+        
+        public void SetInteractionLabel(string label)
+        {
+            interactionLabel = label;
         }
     }
 }
