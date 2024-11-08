@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 970af1d4cad261c44a9d1c084f20bcd5
+guid: 28d02a10e4303384f9e12e188d3f7ff8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,43 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fabric
-    second: {fileID: 2100000, guid: 67d829b53ed6c1343a1804a31fc1bd5e, type: 2}
+      name: Cardboard
+    second: {fileID: 2100000, guid: c523fdabc62256c448a872a0aaf83e75, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fabric_01
-    second: {fileID: 2100000, guid: 411e5dbfd056f4d4d9235d7748c102d6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fabric_02
-    second: {fileID: 2100000, guid: 874d858450c65964d93340b79792ccf2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.010
-    second: {fileID: 2100000, guid: 40d3cfd826476e84abf644e85cfbe825, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.054
-    second: {fileID: 2100000, guid: eaaf9bbf8c2790948806814222747144, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.130
-    second: {fileID: 2100000, guid: 58e2a05dfd479d445bad576187398f77, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mattress
-    second: {fileID: 2100000, guid: 9d803d1d968e8894bb2fb9ebf1831e07, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 27dd3760daa5f354888bd89d6d28e810, type: 2}
+      name: Metal_15
+    second: {fileID: 2100000, guid: 75607ac2f8ef1bc42af379570a419ead, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

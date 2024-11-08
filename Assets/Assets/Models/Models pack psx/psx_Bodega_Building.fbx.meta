@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 970af1d4cad261c44a9d1c084f20bcd5
+guid: 3eda73a8a16d89e47bf390137a774297
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fabric
-    second: {fileID: 2100000, guid: 67d829b53ed6c1343a1804a31fc1bd5e, type: 2}
+      name: Asphalt
+    second: {fileID: 2100000, guid: 53cacf5112f8f0745b7f46363c4fa518, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fabric_01
-    second: {fileID: 2100000, guid: 411e5dbfd056f4d4d9235d7748c102d6, type: 2}
+      name: Door
+    second: {fileID: 2100000, guid: c68cef2ce0b933b4aaca0ae5e6e5379e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fabric_02
-    second: {fileID: 2100000, guid: 874d858450c65964d93340b79792ccf2, type: 2}
+      name: Door_01
+    second: {fileID: 2100000, guid: 2f7d853ca1423734eaf00cdfc244dc1d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -27,23 +27,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.054
-    second: {fileID: 2100000, guid: eaaf9bbf8c2790948806814222747144, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.130
-    second: {fileID: 2100000, guid: 58e2a05dfd479d445bad576187398f77, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mattress
-    second: {fileID: 2100000, guid: 9d803d1d968e8894bb2fb9ebf1831e07, type: 2}
+      name: Material.053
+    second: {fileID: 2100000, guid: 10e41c12c3a382549916af04591ed086, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Metal
     second: {fileID: 2100000, guid: 27dd3760daa5f354888bd89d6d28e810, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tiles_01
+    second: {fileID: 2100000, guid: 04c35c423e5b0ff4ba14e7d42331a548, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick_02
+    second: {fileID: 2100000, guid: 0c028ac6651a1284a866f824c6ddc84d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ceiling
+    second: {fileID: 2100000, guid: d1647830a04d4e14db2d756ee45e50d8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
