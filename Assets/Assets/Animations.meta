@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 2e30babe8c707a24586186631b02b0bf
-=======
 <<<<<<< HEAD:Assets/Assets/Animations.meta
 guid: a07e1252eaf8eac4dba621df8291768e
 =======
 guid: 2e30babe8c707a24586186631b02b0bf
 >>>>>>> 0172fa9ac049ee1324a2e9253568dcda38a2e01b:Assets/Assets/Prefabs/Buildings/Houses.meta
->>>>>>> 0172fa9ac049ee1324a2e9253568dcda38a2e01b
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
