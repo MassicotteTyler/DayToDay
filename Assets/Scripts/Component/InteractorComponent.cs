@@ -52,7 +52,13 @@ namespace Component
                 Interact();
             }   
         }
-        
+
+        private void OnDisable()
+        {
+           _observedObject?.StopObserving(gameObject); 
+           _observedObject = null;
+        }
+
         /// <summary>
         /// Casts a ray in front of the interactor to check for interactable objects.
         /// </summary>
