@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Events;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,9 +57,19 @@ namespace Component
         /// </summary>
         [SerializeField] private string interactionLabel = "Interact";
 
+        /// <summary>
+        /// Events to trigger when the object is interacted with.
+        /// </summary>
+        [SerializeField] private List<GameEvent> InteractionEvents;
+
         public void Interact(GameObject interactor)
         {
             onInteract?.Invoke(interactor);
+            
+            foreach (var interactionEvent in InteractionEvents)
+            {
+                interactionEvent.Invoke();
+            }
         }
 
         public void Observe(GameObject observer)

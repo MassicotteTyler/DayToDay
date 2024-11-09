@@ -26,7 +26,7 @@ namespace Props
 
         private void OnDestroy()
         {
-            _interactableComponent.onInteract?.RemoveListener(Interact);
+            _interactableComponent?.onInteract?.RemoveListener(Interact);
         }
     }
 }

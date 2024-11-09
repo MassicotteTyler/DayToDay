@@ -15,7 +15,6 @@ namespace Component
         /// </summary>
         private bool _isInteracting = false;
         
-        
         /// <summary>
         /// Object currently being observed by the interactor.
         /// </summary>
@@ -32,11 +31,17 @@ namespace Component
         [Range(0, 10)]
         [SerializeField] private float interactDistance = 2f;
         
-        [RequiredMember]
+        /// <summary>
+        /// Transform to use as the view point for the interactor.
+        /// </summary>
         [SerializeField] private Transform _viewPoint;
         
         private void Start()
         {
+            if (_viewPoint == null)
+            {
+                _viewPoint = transform;
+            }
         }
         
         private void Update()

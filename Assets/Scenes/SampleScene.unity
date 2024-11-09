@@ -522,6 +522,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionLabel: Touch
+  InteractionEvents:
+  - {fileID: 11400000, guid: f1fa1157fdc391e4aa53e748ea0bbd3c, type: 2}
 --- !u!65 &1082889656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -673,6 +675,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionLabel: Interact
+  InteractionEvents:
+  - {fileID: 11400000, guid: 34865bf483b47c742a1f4e28e8f670e9, type: 2}
 --- !u!65 &1385533748
 BoxCollider:
   m_ObjectHideFlags: 0

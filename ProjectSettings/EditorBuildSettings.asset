@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Boot/Boot.unity
+    guid: d13c57c4f8386134089e96c806d02cc5
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/HouseGreybox.unity
+    guid: a26b7c11b662d5347867af00f3e1970b
+  - enabled: 1
+    path: Assets/Scenes/WorldGreybox.unity
+    guid: 3af8a70103202f441943fa9deba984db
   m_configObjects: {}
