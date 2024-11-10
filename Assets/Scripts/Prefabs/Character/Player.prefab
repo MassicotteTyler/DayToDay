@@ -251,6 +251,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheckDistance: 0.4
+  stride: 4
+  headBobIntensity: 0.05
+  headBobDuration: 2.63
 --- !u!54 &4525300152234574523
 Rigidbody:
   m_ObjectHideFlags: 0

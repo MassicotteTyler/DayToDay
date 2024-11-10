@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controller
 {
@@ -18,7 +19,7 @@ namespace Controller
         [Header("Movement")] [SerializeField] private float walkSpeed = 2.0f;
         
         /// <summary>
-        ///  <para>Standaing height of the player</para>
+        ///  <para>Standing height of the player</para>
         /// </summary>
         [SerializeField] private float standingHeight = 2.0f;
 
@@ -47,6 +48,36 @@ namespace Controller
         /// The distance to check if the player is grounded
         /// </summary>
         [SerializeField] private float groundCheckDistance = 0.4f;
+        
+        /// <summary>
+        /// The distance between steps
+        /// </summary>
+        [SerializeField] private float stride = 4f;
+        
+        /// <summary>
+        /// The current step distance the player has taken
+        /// </summary>
+        private float _currentStepDistance = 0f;
+        
+        /// <summary>
+        /// How much the camera should bob
+        /// </summary>
+        [Header("HeadBob")]
+        [SerializeField] private float headBobIntensity = .05f;
+        /// <summary>
+        /// The duration of the head bob
+        /// </summary>
+        [SerializeField] private float headBobDuration = 2.63f;
+        
+        /// <summary>
+        /// If the player is currently stepping
+        /// </summary>
+        private bool _stepping;
+        
+        /// <summary>
+        /// The initial Y position of the camera
+        /// </summary>
+        private float _initialYPos;
 
         /// <summary>
         /// The character controller component
@@ -93,6 +124,10 @@ namespace Controller
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            
+            _currentStepDistance = 0f;
+            _stepping = false;
+            _initialYPos = _playerCamera.transform.localPosition.y;
         }
 
         // Update is called once per frame
@@ -101,7 +136,7 @@ namespace Controller
             HandleInput();
             HandleMovement();
             HandleMouseLook();
-            CheckGround();
+            CheckStep();
         }
 
         private void OnDisable()
@@ -122,10 +157,49 @@ namespace Controller
         }
 
         /// <summary>
-        /// <para>Check if the player is grounded</para>
+        /// <para>Check if the player is taking a step</para>
         /// </summary>
-        private void CheckGround()
+        private void CheckStep()
         {
+            // If we're grounded and our velocity is greater than 0, check if we're over the step distance
+            var horizontalVelocity = new Vector3(_velocity.x, 0, _velocity.z).magnitude;
+            if (!_characterController.isGrounded || horizontalVelocity <= 0)
+            {
+                _currentStepDistance = 0f;
+                return;
+            }
+            
+            _currentStepDistance += _velocity.magnitude * Time.deltaTime;
+            if (!_stepping && _currentStepDistance >= stride)
+            {
+                Step();
+            }
+        }
+
+        private void Step()
+        {
+            if (_stepping) return;
+            _currentStepDistance = 0f;
+            StartCoroutine(HeadBob());
+        }
+
+        private IEnumerator HeadBob()
+        {
+            var time = 0f;
+            _stepping = true;
+            while (time < headBobDuration)
+            {
+                time += Time.fixedDeltaTime;
+                var t = time / headBobDuration;
+                var bobAmount = Mathf.Sin(t * Mathf.PI) * headBobIntensity;
+                _playerCamera.transform.localPosition =  
+                    new Vector3(
+                        _playerCamera.transform.localPosition.x, 
+                        _initialYPos - bobAmount,
+                        _playerCamera.transform.localPosition.z);
+                yield return null;
+            }
+            _stepping = false;
         }
 
         /// <summary>
@@ -135,7 +209,8 @@ namespace Controller
         {
             _currentSpeed = walkSpeed;
             _velocity = transform.TransformDirection(_moveDirection) * _currentSpeed;
-            _velocity.y -= 9.81f;
+            
+            _velocity.y += Physics.gravity.y;
             _characterController.Move(_velocity * Time.deltaTime);
         }
 
