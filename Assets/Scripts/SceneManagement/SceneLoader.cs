@@ -35,6 +35,11 @@ namespace SceneManagement
         /// </summary>
         [SerializeField] private SceneGroup[] SceneGroups;
 
+        /// <summary>
+        /// The active scene group.
+        /// </summary>
+        private SceneGroup _activeSceneGroup;
+        
         private float targetProgress;
         private bool isLoading;
 
@@ -104,6 +109,7 @@ namespace SceneManagement
         /// <param name="group">The scene group to load.</param>
         public async Task LoadSceneGroup(SceneGroup group)
         {
+            _activeSceneGroup = group;
             LoadingProgress progress = new LoadingProgress();
             progress.OnProgress += target => targetProgress = Mathf.Max(target, targetProgress);
 
@@ -121,6 +127,15 @@ namespace SceneManagement
             isLoading = enable;
             if (loadingCanvas) loadingCanvas.gameObject.SetActive(enable);
             // if (loadingCamera) loadingCamera.gameObject.SetActive(enable);
+        }
+        
+        /// <summary>
+        /// Reloads the currently active scene group.
+        /// </summary>
+        public async void ReloadActiveSceneGroup()
+        {
+            if (!_activeSceneGroup) return;
+            await LoadSceneGroup(_activeSceneGroup);
         }
     }
 

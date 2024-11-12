@@ -1,4 +1,5 @@
-﻿using DevTools.Node;
+﻿using System;
+using DevTools.Node;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +29,17 @@ namespace SceneManagement
         public void UpdateSceneLoader(SceneLoader sceneLoader)
         {
             SceneLoader = sceneLoader;
+        }
+
+        public void Update()
+        {
+            // TODO: Replace this with an action later
+            #if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneLoader.ReloadActiveSceneGroup();
+            }
+            #endif
         }
 
         /// <summary>
