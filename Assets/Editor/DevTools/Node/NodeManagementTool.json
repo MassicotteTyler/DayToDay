@@ -1,0 +1,18 @@
+{
+    "enableBootstrapper": true,
+    "playerPrefab": {
+        "instanceID": 32864
+    },
+    "playerPrefabPath": "Assets/Scripts/Prefabs/Character/Player.prefab",
+    "playerSpawnPosition": {
+        "x": 46.436134338378909,
+        "y": 6.964942932128906,
+        "z": 41.03900909423828
+    },
+    "playerSpawnRotation": {
+        "x": 0.00433704536408186,
+        "y": -0.9985718727111816,
+        "z": 0.04938735440373421,
+        "w": -0.019903287291526796
+    }
+}

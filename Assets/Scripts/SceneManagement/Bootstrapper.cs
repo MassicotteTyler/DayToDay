@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DevTools.Node;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utility;
 
@@ -43,9 +45,41 @@ namespace SceneManagement
                 Debug.LogError("Boot scene not found. Ensure a scene is added to the build settings at index 0.");
                 return;
             }
-
-            SceneManager.LoadSceneAsync(sceneBuildIndex: 0, LoadSceneMode.Single);
             BootSceneName = SceneManager.GetSceneByBuildIndex(0).name;
+            
+            #if UNITY_EDITOR
+            if (!NodeManagementTool.config.enableBootstrapper)
+            {
+                return;
+            }
+            #endif
+            
+            SceneManager.LoadSceneAsync(sceneBuildIndex: 0, LoadSceneMode.Single);
+        }
+
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void AfterSceneLoad()
+        {
+            #if UNITY_EDITOR
+            if (NodeManagementTool.config.enableBootstrapper) return;
+            if (NodeManagementTool.config.playerPrefab == null) return;
+            
+            // check if a player prefab already exists
+            var player = GameObject.FindWithTag("Player");
+            if (player) return;
+                    
+                    
+            // Spawn player prefab
+            player = Instantiate(NodeManagementTool.config.playerPrefab,
+                NodeManagementTool.config.playerSpawnPosition,
+                Quaternion.identity * NodeManagementTool.config.playerSpawnRotation);
+                    
+            // Update camera rotation
+            var playerCamera = player.GetComponentInChildren<Camera>();
+            if (!playerCamera) return;
+            playerCamera.transform.localRotation = NodeManagementTool.config.playerSpawnRotation;
+            #endif
         }
     }
 }

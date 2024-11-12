@@ -128,6 +128,8 @@ namespace Controller
             _currentStepDistance = 0f;
             _stepping = false;
             _initialYPos = _playerCamera.transform.localPosition.y;
+            _rotationX = transform.localEulerAngles.x;
+            _rotationY = transform.localEulerAngles.y;
         }
 
         // Update is called once per frame
@@ -221,14 +223,17 @@ namespace Controller
         {
             var mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             var mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            
+            if (mouseX == 0 && mouseY == 0) return;
 
             _rotationX -= mouseY;
             _rotationX = Mathf.Clamp(_rotationX, -maxLookAngle, maxLookAngle);
 
             _rotationY += mouseX;
 
-            _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-            transform.rotation = Quaternion.Euler(0, _rotationY, 0);
+            _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 
+                _playerCamera.transform.localRotation.y, _playerCamera.transform.localRotation.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, _rotationY, transform.rotation.z);
         }
     }
 }
