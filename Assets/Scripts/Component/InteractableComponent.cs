@@ -87,6 +87,7 @@ namespace Component
         public void SetInteractionLabel(string label)
         {
             interactionLabel = label;
+            UIManager.Instance.OnInteractionLabelChanged?.Invoke(interactionLabel);
         }
     }
 }

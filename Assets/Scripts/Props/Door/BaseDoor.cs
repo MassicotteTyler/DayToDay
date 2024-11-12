@@ -5,44 +5,31 @@ using Component;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Props
+namespace Props.Door
 {
     /// <summary>
     /// A component that represents a door which can be interacted with.
     /// </summary>
     [RequireComponent(typeof(InteractableComponent))]
     [RequireComponent(typeof(BoxCollider))]
-    public class Door : MonoBehaviour
+    public abstract class BaseDoor : MonoBehaviour
     {
         /// <summary>
         /// Indicates whether the door is open.
         /// </summary>
         [SerializeField] private bool _isOpen = false;
 
-        /// <summary>
-        /// The angle at which the door is open.
-        /// </summary>
-        [SerializeField] private float openAngle = 90f;
-
-        /// <summary>
-        /// The angle at which the door is closed.
-        /// </summary>
-        [SerializeField] private float closeAngle = 0f;
 
         /// <summary>
         /// The speed at which the door opens and closes.
         /// </summary>
-        [SerializeField] private float speed = .3f;
+        [SerializeField] protected float speed = .3f;
 
         /// <summary>
         /// Indicates whether the door is locked.
         /// </summary>
         [SerializeField] private bool isLocked = false;
 
-        /// <summary>
-        /// The transform around which the door pivots.
-        /// </summary>
-        [SerializeField] private Transform pivotTransform;
 
         /// <summary>
         /// Event triggered when the state of the door changes.
@@ -67,8 +54,13 @@ namespace Props
         /// <summary>
         /// The box collider of the door.
         /// </summary>
-        private BoxCollider _boxCollider;
+        protected BoxCollider _boxCollider;
 
+        /// <summary>
+        /// Coroutine for moving the door.
+        /// </summary>
+        protected Coroutine moveDoorCoroutine;
+        
         /// <summary>
         /// Gets or sets a value indicating whether the door is open.
         /// </summary>
@@ -112,7 +104,7 @@ namespace Props
         /// </summary>
         private void OnDestroy()
         {
-            _interactableComponent.onInteract?.RemoveAllListeners();
+            _interactableComponent?.onInteract?.RemoveAllListeners();
         }
 
         private void Update()
@@ -120,26 +112,19 @@ namespace Props
         }
 
         /// <summary>
-        /// Coroutine for transitioning the door between open and closed states.
+        /// Transition for opening the door.
         /// </summary>
-        /// <param name="startAngle">The starting angle of the door.</param>
-        /// <param name="endAngle">The ending angle of the door.</param>
-        /// <param name="duration">The duration of the transition.</param>
-        /// <returns>An IEnumerator for the coroutine.</returns>
-        private IEnumerator TransitionDoor(float startAngle, float endAngle, float duration)
+        protected virtual void OpenDoorTransition()
         {
-            float time = 0;
-            _boxCollider.enabled = false;
-            while (time < duration)
-            {
-                var angle = Mathf.Lerp(startAngle, endAngle, time / duration);
-                transform.RotateAround(pivotTransform.position, Vector3.up, angle - transform.localRotation.eulerAngles.y);
-                time += Time.deltaTime;
-                yield return null;
-            }
-            _boxCollider.enabled = true;
-            transform.RotateAround(pivotTransform.position, Vector3.up, endAngle - transform.localRotation.eulerAngles.y);
         }
+        
+        /// <summary>
+        /// Transition for closing the door.
+        /// </summary>
+        protected virtual void CloseDoorTransition()
+        {
+        }
+        
 
         /// <summary>
         /// Toggles the door between open and closed states.
@@ -177,8 +162,9 @@ namespace Props
 
             IsOpen = true;
             onOpen?.Invoke();
+            
+            OpenDoorTransition();
 
-            StartCoroutine(TransitionDoor(closeAngle, openAngle, speed));
         }
 
         /// <summary>
@@ -191,7 +177,7 @@ namespace Props
             IsOpen = false;
             onClose?.Invoke();
 
-            StartCoroutine(TransitionDoor(openAngle, closeAngle, speed));
+            CloseDoorTransition();
         }
     }
 }
