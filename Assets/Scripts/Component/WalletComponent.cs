@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using World;
 
 namespace Component
 {
@@ -40,9 +41,15 @@ namespace Component
             {
                 _balance = value;
                 OnBalanceChanged?.Invoke();
+                WorldManager.Instance.UpdatePlayerMoney(_balance);
             }
         }
-        
+
+        private void Awake()
+        {
+           _balance = WorldManager.Instance.GetPlayerMoney(); 
+        }
+
         /// <summary>
         /// Deposit money into the wallet.
         /// </summary>
