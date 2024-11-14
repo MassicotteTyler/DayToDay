@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Utility;
 
 namespace World
@@ -8,6 +9,11 @@ namespace World
     /// </summary>
     public class WorldManager : Singleton<WorldManager>
     {
+        /// <summary>
+        ///   Action to trigger when the player's money changes.
+        /// </summary>
+        public Action<float> OnPlayerMoneyChanged;
+        
         /// <summary>
         /// The state of the world.
         /// </summary>
@@ -43,6 +49,7 @@ namespace World
         public void UpdatePlayerMoney(float amount)
         {
             _playerState.Money = amount;
+            OnPlayerMoneyChanged?.Invoke(amount);
         }
         
         /// <summary>
