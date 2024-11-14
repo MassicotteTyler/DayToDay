@@ -18,7 +18,32 @@ namespace UI
         /// Action to trigger the interaction label to hide.
         /// </summary>
         public Action OnHideInteractionLabel;
+        
+        /// <summary>
+        /// Action to trigger the note ui to change.
+        /// </summary>
+        public Action<string> OnNoteTextChange;
 
+        /// <summary>
+        /// Action to trigger the note ui to hide.
+        /// </summary>
+        public Action OnHideNote;
+
+        /// <summary>
+        /// Action to trigger the active UI to hide.
+        /// </summary>
+        public Action HideActiveUI;
+
+        /// <summary>
+        /// Action to trigger the UI to enter UI mode.
+        /// </summary>
+        public Action OnEnterUIMode;
+        
+        /// <summary>
+        /// Action to trigger the UI to exit UI mode.
+        /// </summary>
+        public Action OnExitUIMode;
+        
         /// <summary>
         /// Initialize the UIManager.
         /// </summary>

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Component;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +12,7 @@ namespace Controller
     ///    <para>First Person Controller</para>
     /// </summary>
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(InteractorComponent))]
     public class FPSController : MonoBehaviour
     {
         
@@ -85,6 +88,11 @@ namespace Controller
         private CharacterController _characterController;
         
         /// <summary>
+        /// The interactor component
+        /// </summary>
+        private InteractorComponent _interactorComponent;
+        
+        /// <summary>
         /// The player camera
         /// </summary>
         private Camera _playerCamera;
@@ -121,6 +129,7 @@ namespace Controller
         {
             _characterController = GetComponent<CharacterController>();
             _playerCamera = GetComponentInChildren<Camera>();
+            _interactorComponent = GetComponent<InteractorComponent>();
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -130,6 +139,25 @@ namespace Controller
             _initialYPos = _playerCamera.transform.localPosition.y;
             _rotationX = transform.localEulerAngles.x;
             _rotationY = transform.localEulerAngles.y;
+            
+            UIManager.Instance.OnEnterUIMode += DisableInteraction;
+            UIManager.Instance.OnExitUIMode += EnableInteraction;
+        }
+        
+        /// <summary>
+        /// <para>Enable the <see cref="InteractorComponent"/></para>
+        /// </summary>
+        private void EnableInteraction()
+        {
+            _interactorComponent.enabled = true;
+        }
+        
+        /// <summary>
+        /// <para>Disable the <see cref="InteractorComponent"/></para>
+        /// </summary>
+        private void DisableInteraction()
+        {
+            _interactorComponent.enabled = false;
         }
 
         // Update is called once per frame
