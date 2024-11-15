@@ -1785,8 +1785,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
       propertyPath: m_spriteAsset
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
       propertyPath: m_isRightToLeft
@@ -1798,14 +1806,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
       propertyPath: m_enableExtraPadding
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
-      propertyPath: m_overrideHtmlColors
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866204169622137962, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
-      propertyPath: m_enableVertexGradient
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4909329029191421626, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
@@ -1834,11 +1834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4909329029191421626, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4909329029191421626, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4909329029191421626, guid: 3c5b17609bc46cb4eb3053362ddc2914, type: 3}
       propertyPath: m_LocalPosition.x
