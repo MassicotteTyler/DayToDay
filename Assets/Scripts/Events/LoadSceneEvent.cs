@@ -1,4 +1,6 @@
-﻿using SceneManagement;
+﻿using System.Threading.Tasks;
+using SceneManagement;
+using UI;
 using UnityEngine;
 
 namespace Events
@@ -24,11 +26,13 @@ namespace Events
         /// </summary>
         public override async void Invoke()
         {
+            base.Invoke();
             if (!SceneGroup)
             {
                 Debug.LogError($"Event Error |{EventName}|: SceneGroup is null.");
                 return;
             }
+            // TODO: This should be event chained
             await Bootstrapper.Instance.SceneLoader.LoadSceneGroup(SceneGroup);
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using Component;
 using Controller;
+using Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -54,6 +55,11 @@ namespace Props
         private Action _onCameraMoveComplete;
 
         /// <summary>
+        /// Event to be invoked when the player sleeps.
+        /// </summary>
+        [SerializeField] private GameEvent onSleepEvent;
+        
+        /// <summary>
         /// Initializes the Bed component.
         /// </summary>
         private void Start()
@@ -90,7 +96,7 @@ namespace Props
             // This can be removed once we have sleep events and node transitions
             _onCameraMoveComplete += () =>
             {
-                Invoke(nameof(WakeUp), 1.5f);
+                onSleepEvent?.Invoke();
                 _onCameraMoveComplete = null;
             };
         }

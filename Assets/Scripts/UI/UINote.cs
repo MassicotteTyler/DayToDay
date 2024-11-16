@@ -68,6 +68,8 @@ namespace UI
         public void Hide()
         {
             UIManager.Instance.HideActiveUI -= Hide;
+            UIManager.Instance.OnExitUIMode -= Hide;
+            if (!gameObject) return;
             gameObject.SetActive(false);
         }
 

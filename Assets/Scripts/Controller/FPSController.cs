@@ -143,7 +143,13 @@ namespace Controller
             UIManager.Instance.OnEnterUIMode += DisableInteraction;
             UIManager.Instance.OnExitUIMode += EnableInteraction;
         }
-        
+
+        private void OnDestroy()
+        {
+            UIManager.Instance.OnEnterUIMode -= DisableInteraction;
+            UIManager.Instance.OnExitUIMode -= EnableInteraction;
+        }
+
         /// <summary>
         /// <para>Enable the <see cref="InteractorComponent"/></para>
         /// </summary>

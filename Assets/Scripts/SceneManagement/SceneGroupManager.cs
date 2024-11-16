@@ -92,7 +92,6 @@ namespace SceneManagement
             int sceneCount = SceneManager.sceneCount;
             for (var index = sceneCount - 1; index > 0; index--)
             {
-                Debug.Log($"Index: {index}");
                 var sceneAt = SceneManager.GetSceneAt(index);
                 if (!sceneAt.isLoaded)
                 {

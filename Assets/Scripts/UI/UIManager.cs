@@ -43,13 +43,51 @@ namespace UI
         /// Action to trigger the UI to exit UI mode.
         /// </summary>
         public Action OnExitUIMode;
+
+        /// <summary>
+        /// Action to trigger the UI to transition.
+        /// </summary>
+        public Action OnNodeTransitionStart;
         
+        /// <summary>
+        /// Action to trigger the UI to end transition.
+        /// </summary>
+        public Action OnNodeTransitionEnd;
+
+
+        /// <summary>
+        /// Flag to check if the UI is transitioning.
+        /// </summary>
+        public bool IsTransitioning { get; private set; }
+
         /// <summary>
         /// Initialize the UIManager.
         /// </summary>
         protected override void Initialize()
         {
             Debug.Log("UIManager initialized");
+            
+            // OnNodeTransitionStart += TransitionStart;
+            // OnNodeTransitionEnd += TransitionEnd;
+            
+            IsTransitioning = false;
+        }
+
+        private void OnDestroy()
+        {
+            // OnNodeTransitionStart -= TransitionStart;
+            // OnNodeTransitionEnd -= TransitionEnd;
+        
+        }
+
+        public void TransitionStart()
+        {
+            IsTransitioning = true;
+        }
+
+        public void TransitionEnd()
+        {
+            IsTransitioning = false;
         }
     }
 }

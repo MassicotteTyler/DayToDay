@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,9 +54,9 @@ namespace SceneManagement
         /// </summary>
         private void Awake()
         {
-            SceneGroupManager.OnSceneLoad += sceneName => Debug.Log($"Loaded scene: {sceneName}");
-            SceneGroupManager.OnSceneUnload += sceneName => Debug.Log($"Unloaded scene: {sceneName}");
-            SceneGroupManager.OnSceneGroupLoaded += () => Debug.Log("Scene group loaded");
+            // SceneGroupManager.OnSceneLoad += sceneName => Debug.Log($"Loaded scene: {sceneName}");
+            // SceneGroupManager.OnSceneUnload += sceneName => Debug.Log($"Unloaded scene: {sceneName}");
+            // SceneGroupManager.OnSceneGroupLoaded += () => Debug.Log("Scene group loaded");
 
             // TODO: This race condition is not ideal. We should refactor this to be more robust.
             Bootstrapper.Instance.UpdateSceneLoader(this);
@@ -113,20 +114,41 @@ namespace SceneManagement
             LoadingProgress progress = new LoadingProgress();
             progress.OnProgress += target => targetProgress = Mathf.Max(target, targetProgress);
 
-            EnableLoadingCanvas();
+            await EnableLoadingCanvas();
             await SceneGroupManager.LoadScenes(group, progress);
-            EnableLoadingCanvas(false);
+            await EnableLoadingCanvas(false);
         }
 
         /// <summary>
         /// Enables or disables the loading canvas.
         /// </summary>
         /// <param name="enable">If set to <c>true</c>, enables the loading canvas.</param>
-        private void EnableLoadingCanvas(bool enable = true)
+        private async Task EnableLoadingCanvas(bool enable = true)
         {
             isLoading = enable;
             if (loadingCanvas) loadingCanvas.gameObject.SetActive(enable);
             // if (loadingCamera) loadingCamera.gameObject.SetActive(enable);
+
+            if (enable)
+            {
+                UIManager.Instance.OnNodeTransitionStart?.Invoke();
+            }
+            else
+            {
+                UIManager.Instance.OnNodeTransitionEnd?.Invoke();
+            }
+            // TODO: Have a timeout so we don't get stuck here
+            var timeout = 0;
+            while (UIManager.Instance.IsTransitioning && timeout < 109)
+            {
+                // Wait for the transition to complete
+                timeout++;
+                await Task.Delay(100);
+                if (timeout >= 100)
+                {
+                    Debug.LogError("Timeout reached while waiting for transition to complete.");
+                }
+            }
         }
         
         /// <summary>
@@ -135,6 +157,16 @@ namespace SceneManagement
         public async void ReloadActiveSceneGroup()
         {
             if (!_activeSceneGroup) return;
+            await LoadSceneGroup(_activeSceneGroup);
+        }
+
+        public async Task EndNode()
+        {
+            
+            // Determine the next node
+            // TODO: Currently just reloading the active scene group
+
+            // Load the next node
             await LoadSceneGroup(_activeSceneGroup);
         }
     }
