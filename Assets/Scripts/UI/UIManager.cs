@@ -63,8 +63,9 @@ namespace UI
         /// <summary>
         /// Initialize the UIManager.
         /// </summary>
-        protected override void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             Debug.Log("UIManager initialized");
             
             // OnNodeTransitionStart += TransitionStart;
