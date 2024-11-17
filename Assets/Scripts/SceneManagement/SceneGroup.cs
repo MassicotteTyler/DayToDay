@@ -32,8 +32,30 @@ namespace SceneManagement
         {
             return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.Name;
         }
+
+        /// <summary>
+        /// Finds the SceneData of a scene by its sub type.
+        /// </summary>
+        /// <param name="subSceneType"><see cref="SubSceneType"/> to look for for.</param>
+        /// <returns>SceneData of the desired sub type</returns>
+        public SceneData FindSceneBySubType(SubSceneType subSceneType)
+        {
+            return Scenes.FirstOrDefault(scene => scene.SubSceneType == subSceneType);
+        }
     }
 
+    /// <summary>
+    /// Enum representing different types of sub scenes.
+    /// </summary>
+    [Serializable]
+    public enum SubSceneType
+    {
+        None,
+        House,
+        Bodega,
+        Variant
+    }
+    
     /// <summary>
     /// Represents data for a single scene.
     /// </summary>
@@ -54,6 +76,11 @@ namespace SceneManagement
         /// The type of the scene.
         /// </summary>
         public SceneType SceneType;
+        
+        /// <summary>
+        /// The Sub Scene type.
+        /// </summary>
+        public SubSceneType SubSceneType = SubSceneType.None; 
     }
 
     /// <summary>
@@ -65,6 +92,11 @@ namespace SceneManagement
         /// The active scene.
         /// </summary>
         ActiveScene,
+        
+        /// <summary>
+        /// Sub scene loaded into an active scene
+        /// </summary>
+        SubScene,
 
         /// <summary>
         /// The main menu scene.

@@ -160,6 +160,9 @@ namespace SceneManagement
             await LoadSceneGroup(_activeSceneGroup);
         }
 
+        /// <summary>
+        /// Ends the current node.
+        /// </summary>
         public async Task EndNode()
         {
             
@@ -168,6 +171,16 @@ namespace SceneManagement
 
             // Load the next node
             await LoadSceneGroup(_activeSceneGroup);
+        }
+        
+        /// <summary>
+        /// Gets the scene data for the specified subscene type.
+        /// </summary>
+        /// <param name="sceneType"></param>
+        /// <returns></returns>
+        public SceneData GetSubSceneData(SubSceneType sceneType)
+        {
+            return _activeSceneGroup.FindSceneBySubType(sceneType);
         }
     }
 
