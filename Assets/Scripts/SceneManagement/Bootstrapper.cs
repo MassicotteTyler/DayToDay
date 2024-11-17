@@ -1,5 +1,6 @@
 ﻿using System;
 using DevTools.Node;
+using UI;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -75,6 +76,10 @@ namespace SceneManagement
         {
             #if UNITY_EDITOR
             if (NodeManagementTool.config.enableBootstrapper) return;
+            
+            // Ensure the UI transitions out if we're not using the bootstrapper events
+            UIManager.Instance.OnNodeTransitionEnd?.Invoke();
+            
             if (NodeManagementTool.config.playerPrefab == null) return;
             
             // check if a player prefab already exists
