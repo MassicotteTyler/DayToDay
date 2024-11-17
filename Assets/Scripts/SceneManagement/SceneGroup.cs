@@ -30,7 +30,7 @@ namespace SceneManagement
         /// <returns>The name of the scene if found; otherwise, null.</returns>
         public string FindSceneNameByType(SceneType sceneType)
         {
-            return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.Name;
+            return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.Name ?? "";
         }
 
         /// <summary>

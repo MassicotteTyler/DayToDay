@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Eflatun.SceneReference;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,11 @@ namespace SceneManagement
         /// </summary>
         [SerializeField] private Camera loadingCamera;
 
+        /// <summary>
+        /// The default UI scene to load.
+        /// </summary>
+        [SerializeField] private SceneReference defaultUIScene;
+        
         /// <summary>
         /// The array of scene groups to be loaded.
         /// </summary>
@@ -113,6 +119,17 @@ namespace SceneManagement
             _activeSceneGroup = group;
             LoadingProgress progress = new LoadingProgress();
             progress.OnProgress += target => targetProgress = Mathf.Max(target, targetProgress);
+            
+            // Check if there is a UI Scene to load, otherwise insert default UI Scene
+            if (string.IsNullOrWhiteSpace(group.FindSceneNameByType(SceneType.UserInterface)))
+            {
+                var uiScene = new SceneData()
+                {
+                    Reference = defaultUIScene,
+                    SceneType = SceneType.UserInterface
+                };
+                group.Scenes.Add(uiScene);
+            }
 
             await EnableLoadingCanvas();
             await SceneGroupManager.LoadScenes(group, progress);

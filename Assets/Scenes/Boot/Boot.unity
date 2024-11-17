@@ -156,9 +156,12 @@ MonoBehaviour:
   fillSpeed: 0.5
   loadingCanvas: {fileID: 0}
   loadingCamera: {fileID: 1049337931}
+  defaultUIScene:
+    asset: {fileID: 102900000, guid: bf26b4ea43cc3f147933d81e13979c69, type: 3}
+    guid: bf26b4ea43cc3f147933d81e13979c69
   SceneGroups:
-  - {fileID: 11400000, guid: 6154fda6ca8f8574fba0abdfcc4ffb6d, type: 2}
   - {fileID: 11400000, guid: f001e7a29702d3f40a76643041d2ad51, type: 2}
+  - {fileID: 11400000, guid: 6154fda6ca8f8574fba0abdfcc4ffb6d, type: 2}
   - {fileID: 11400000, guid: 7766193dbf22f3d4ba89288c95f23ea7, type: 2}
 --- !u!4 &174094520
 Transform:
