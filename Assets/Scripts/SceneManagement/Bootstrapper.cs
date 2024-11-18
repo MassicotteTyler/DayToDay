@@ -1,5 +1,6 @@
 ﻿using System;
 using DevTools.Node;
+using Props;
 using UI;
 using UnityEditor;
 using UnityEngine;
@@ -79,6 +80,9 @@ namespace SceneManagement
             
             // Ensure the UI transitions out if we're not using the bootstrapper events
             UIManager.Instance.OnNodeTransitionEnd?.Invoke();
+            
+            // Reload current scene
+            KillPlane.OnPlayerFellOffMap += () => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             
             if (NodeManagementTool.config.playerPrefab == null) return;
             

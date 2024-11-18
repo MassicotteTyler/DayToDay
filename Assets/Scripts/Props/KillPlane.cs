@@ -11,6 +11,11 @@ namespace Props
     public class KillPlane : MonoBehaviour
     {
         /// <summary>
+        /// Event invoked when the player falls off the map.
+        /// </summary>
+        public static event Action OnPlayerFellOffMap;
+        
+        /// <summary>
         /// The BoxCollider attached to this GameObject.
         /// </summary>
         private BoxCollider _boxCollider;
@@ -30,7 +35,8 @@ namespace Props
             // Check if player
             if (other.CompareTag("Player"))
             {
-                Bootstrapper.Instance.SceneLoader.ReloadActiveSceneGroup();
+                Bootstrapper.Instance.SceneLoader?.ReloadActiveSceneGroup();
+                OnPlayerFellOffMap?.Invoke();
             }
         }
     }
