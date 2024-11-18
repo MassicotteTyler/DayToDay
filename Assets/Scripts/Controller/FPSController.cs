@@ -20,6 +20,11 @@ namespace Controller
         ///   <para>Walking speed of the player</para>
         /// </summary>
         [Header("Movement")] [SerializeField] private float walkSpeed = 2.0f;
+
+        ///<summary>
+        /// <para>Running speed of the player.</para>
+        /// </summary>
+        [Header("Movement")] [SerializeField] private float runSpeed = 5.5f;
         
         /// <summary>
         ///  <para>Standing height of the player</para>
@@ -73,6 +78,16 @@ namespace Controller
         [SerializeField] private float headBobDuration = 2.63f;
         
         /// <summary>
+        /// The duration of the head bob while sprinting
+        /// </summary>
+        [SerializeField] private float headBobSprintDuration = 1.35f;
+
+        /// <summary>
+        /// How much the camera should bob while sprinting
+        /// </summary>
+        [SerializeField] private float headBobSprintIntensity = 0.095f;
+        
+        /// <summary>
         /// If the player is currently stepping
         /// </summary>
         private bool _stepping;
@@ -123,6 +138,12 @@ namespace Controller
         /// The rotation of the player on the Y axis
         /// </summary>
         private float _rotationY = 0f;
+
+        /// <summary>
+        /// The keybinding to start sprinting.
+        /// </summary>
+        [SerializeField] 
+        private KeyCode sprintKey;
 
         // Start is called before the first frame update
         private void Start()
@@ -212,6 +233,21 @@ namespace Controller
             }
         }
 
+        /// <summary>
+        /// <para>Check to see if the sprint key is being held down.</para>
+        /// </summary>
+        private bool CheckSprint()
+        {
+            if (Input.GetKey(sprintKey))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void Step()
         {
             if (_stepping) return;
@@ -226,8 +262,8 @@ namespace Controller
             while (time < headBobDuration)
             {
                 time += Time.fixedDeltaTime;
-                var t = time / headBobDuration;
-                var bobAmount = Mathf.Sin(t * Mathf.PI) * headBobIntensity;
+                var t = time / (CheckSprint() ? headBobSprintDuration : headBobDuration);
+                var bobAmount = Mathf.Sin(t * Mathf.PI) * (CheckSprint() ? headBobSprintIntensity : headBobIntensity);
                 _playerCamera.transform.localPosition =  
                     new Vector3(
                         _playerCamera.transform.localPosition.x, 
@@ -243,7 +279,7 @@ namespace Controller
         /// </summary>
         private void HandleMovement()
         {
-            _currentSpeed = walkSpeed;
+            _currentSpeed = CheckSprint() ? runSpeed : walkSpeed;
             _velocity = transform.TransformDirection(_moveDirection) * _currentSpeed;
             
             _velocity.y += Physics.gravity.y;
