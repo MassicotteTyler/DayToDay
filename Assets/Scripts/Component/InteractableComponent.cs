@@ -68,7 +68,7 @@ namespace Component
             
             foreach (var interactionEvent in InteractionEvents)
             {
-                interactionEvent.Invoke();
+                interactionEvent.Invoke(gameObject);
             }
         }
 

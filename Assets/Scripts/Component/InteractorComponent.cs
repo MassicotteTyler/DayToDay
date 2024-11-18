@@ -101,5 +101,13 @@ namespace Component
                 interactable?.Interact(gameObject);
             }
         }
+        
+        #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(_viewPoint.position, _viewPoint.forward * interactDistance);
+        }
+        #endif
     }
 }

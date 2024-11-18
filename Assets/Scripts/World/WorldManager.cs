@@ -1,4 +1,5 @@
 ﻿using System;
+using Events;
 using UnityEngine;
 using Utility;
 
@@ -29,7 +30,25 @@ namespace World
         /// </summary>
         public class PlayerState
         {
+            /// <summary>
+            /// The player's money.
+            /// </summary>
             public float Money { get; set; } = 0f;
+            
+            /// <summary>
+            /// The number of items shelved by the player.
+            /// </summary>
+            public int ItemsShelved { get; set; } = 0;
+            
+            /// <summary>
+            /// If the player has consumed pills.
+            /// </summary>
+            public bool HasConsumedPills { get; set; } = false;
+            
+            /// <summary>
+            /// The number of pills consumed by the player.
+            /// </summary>
+            public int  ConsumedPills { get; set; } = 0;
         }
         
         /// <summary>
@@ -59,6 +78,34 @@ namespace World
         public float GetPlayerMoney()
         {
             return _playerState.Money;
+        }
+
+        /// <summary>
+        /// Gets the number of items shelved by the player.
+        /// </summary>
+        public void PlayerShelvedItem()
+        {
+            ++_playerState.ItemsShelved;
+        }
+
+        private void Awake()
+        {
+            ConsumedPillsEvent.onPillsConsumed += OnPillsConsumed;
+        }
+        
+        
+        private void OnDestroy()
+        {
+            ConsumedPillsEvent.onPillsConsumed -= OnPillsConsumed;
+        }
+        
+        /// <summary>
+        /// Event handler for when pills are consumed.
+        /// </summary>
+        private void OnPillsConsumed()
+        {
+            _playerState.HasConsumedPills = true;
+            _playerState.ConsumedPills++;
         }
     }
 }

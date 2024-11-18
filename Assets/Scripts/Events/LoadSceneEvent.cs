@@ -24,7 +24,7 @@ namespace Events
         /// <summary>
         /// Invokes the event to load the specified scene group.
         /// </summary>
-        public override async void Invoke()
+        public override async void Invoke(GameObject invoker = null)
         {
             base.Invoke();
             if (!SceneGroup)

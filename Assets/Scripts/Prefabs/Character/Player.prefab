@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7582408010725190359}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,4 +295,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactKey: 102
   interactDistance: 2
-  _viewPoint: {fileID: 0}
+  _viewPoint: {fileID: 7315755986920380538}
