@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  runSpeed: 5.5
   standingHeight: 2
   mouseSensitivity: 2
   maxLookAngle: 90
@@ -254,6 +255,9 @@ MonoBehaviour:
   stride: 4
   headBobIntensity: 0.05
   headBobDuration: 2.63
+  headBobSprintDuration: 1.35
+  headBobSprintIntensity: 0.095
+  sprintKey: 304
 --- !u!54 &4525300152234574523
 Rigidbody:
   m_ObjectHideFlags: 0
