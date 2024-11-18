@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f83e4d94c5ce94192021631c7fc3cf, type: 3}
+  m_Name: Outdoors_Night
+  m_EditorClassIdentifier: 
+  Skybox_Material: {fileID: 2100000, guid: acb1788a39b87224eac6030295af9bfe, type: 2}
+  Ambient_Colour: {r: 0.32941177, g: 0.34901962, b: 0.6901961, a: 1}
+  Ambient_Intensity_Indoor: 1
+  Fog_Enabled: 1
+  Fog_Colour: {r: 0.1254902, g: 0.14117648, b: 0.38431373, a: 0.39215687}
+  Fog_Start: 8
+  Fog_End: 35
