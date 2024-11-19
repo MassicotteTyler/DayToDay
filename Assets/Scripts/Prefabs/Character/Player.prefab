@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1605017152580317282}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  runSpeed: 5.5
   standingHeight: 2
   mouseSensitivity: 2
   maxLookAngle: 90
@@ -254,6 +255,9 @@ MonoBehaviour:
   stride: 4
   headBobIntensity: 0.05
   headBobDuration: 2.63
+  headBobSprintDuration: 1.35
+  headBobSprintIntensity: 0.095
+  sprintKey: 304
 --- !u!54 &4525300152234574523
 Rigidbody:
   m_ObjectHideFlags: 0
