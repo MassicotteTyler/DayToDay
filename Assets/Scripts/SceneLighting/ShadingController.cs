@@ -13,7 +13,7 @@ namespace SceneLighting
         /// <summary>
         /// A camera component is required to use replacement shaders
         /// </summary>
-        public Camera MainCamera;
+        private Camera MainCamera;
 
         /// <summary>
         /// The shader used for replacing
@@ -27,6 +27,11 @@ namespace SceneLighting
         public LightingSettings LightingSettings_02;
         public LightingSettings LightingSettings_03;
         public LightingSettings LightingSettings_04;
+
+        private void Start() 
+        {
+            MainCamera = Camera.main;
+        }
 
         private void Update()
         {
