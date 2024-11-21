@@ -26,10 +26,13 @@ namespace UI.Transition
         [SerializeField] private float transitionDuration = 1.5f;
         private void Awake()
         {
-           _canvasRenderer = GetComponent<CanvasRenderer>(); 
+           _canvasRenderer = GetComponent<CanvasRenderer>();
            
            UIManager.Instance.OnNodeTransitionStart += TransitionStart;
            UIManager.Instance.OnNodeTransitionEnd += TransitionEnd;
+           
+           if (_canvasRenderer.GetAlpha() > 0f)
+               TransitionEnd();
         }
 
         private void OnDestroy()
@@ -71,6 +74,8 @@ namespace UI.Transition
             UIManager.Instance.TransitionStart();
             while (!_canvasRenderer.GetAlpha().Equals(targetAlpha))
             {
+                if (time >= transitionDuration)
+                    break;
                 time += Time.deltaTime;
                 var delta = Mathf.Clamp(time / transitionDuration, 0f, 1f);
                 var newAlpha = Mathf.Lerp(startingAlpha, targetAlpha, delta);

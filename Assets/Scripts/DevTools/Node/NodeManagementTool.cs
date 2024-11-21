@@ -13,28 +13,29 @@ namespace DevTools.Node
         /// Enable the bootstrapper
         /// </summary>
         public bool enableBootstrapper;
-        
+
         /// <summary>
         /// The player prefab to spawn
         /// </summary>
         public GameObject playerPrefab;
-        
+
         /// <summary>
         /// The path to the player prefab
         /// </summary>
         public string playerPrefabPath;
-        
+
         /// <summary>
         /// The position to spawn the player
         /// </summary>
         public Vector3 playerSpawnPosition;
-        
+
         /// <summary>
         /// The rotation to spawn the player
         /// </summary>
         public Quaternion playerSpawnRotation;
     }
-    
+
+#if UNITY_EDITOR
     /// <summary>
     /// Tool for managing nodes in the scene
     /// </summary>
@@ -44,12 +45,12 @@ namespace DevTools.Node
         /// Configuration for the tool
         /// </summary>
         public static NodeManagementConfig config;
-        
+
         /// <summary>
         /// Path to the settings file
         /// </summary>
-        private const string DEV_SETTINGS_PATH = "Assets/Editor/DevTools/Node/NodeManagementTool.json";    
-        
+        private const string DEV_SETTINGS_PATH = "Assets/Editor/DevTools/Node/NodeManagementTool.json";
+
         /// <summary>
         /// Load settings and show the window
         /// </summary>
@@ -62,7 +63,7 @@ namespace DevTools.Node
 
         private void Awake()
         {
-           LoadSettings(); 
+            LoadSettings();
         }
 
         private void OnEnable()
@@ -76,7 +77,7 @@ namespace DevTools.Node
         private void OnInspectorUpdate()
         {
             if (Application.isPlaying) return;
-           SaveConfig(); 
+            SaveConfig();
         }
 
         private void Update()
@@ -93,20 +94,21 @@ namespace DevTools.Node
         {
             GUILayout.Label("Node Management", EditorStyles.boldLabel);
             GUILayout.Space(10);
-           
+
             // Config
             config.enableBootstrapper = EditorGUILayout.Toggle("Enable Bootstrapper", config.enableBootstrapper);
-            
+
             // Player Prefab
-            config.playerPrefab = (GameObject) EditorGUILayout.ObjectField("Player Prefab", config.playerPrefab, typeof(GameObject), allowSceneObjects: false);
+            config.playerPrefab = (GameObject)EditorGUILayout.ObjectField("Player Prefab", config.playerPrefab,
+                typeof(GameObject), allowSceneObjects: false);
             config.playerPrefabPath = AssetDatabase.GetAssetPath(config.playerPrefab);
-            
+
             // Detect changes and then save
             if (GUI.changed)
             {
                 SaveConfig();
             }
-            
+
             // Load Settings button
             if (GUILayout.Button("Load Settings"))
             {
@@ -117,7 +119,6 @@ namespace DevTools.Node
             {
                 Instantiate(config.playerPrefab, config.playerSpawnPosition, config.playerSpawnRotation);
             }
-            
         }
 
         /// <summary>
@@ -134,11 +135,7 @@ namespace DevTools.Node
             }
             else
             {
-                config = new NodeManagementConfig
-                {
-                    enableBootstrapper = true,
-                    playerPrefab = null
-                };
+                config = new NodeManagementConfig { enableBootstrapper = true, playerPrefab = null };
             }
         }
 
@@ -148,7 +145,7 @@ namespace DevTools.Node
         private static void SaveConfig()
         {
             var json = JsonUtility.ToJson(config, prettyPrint: true);
-            
+
             // Ensure directory exists
             var directory = System.IO.Path.GetDirectoryName(DEV_SETTINGS_PATH);
             if (string.IsNullOrEmpty(directory))
@@ -156,13 +153,14 @@ namespace DevTools.Node
                 Debug.LogError($"Directory not found for path: {DEV_SETTINGS_PATH}");
                 return;
             }
-            
+
             if (!System.IO.Directory.Exists(directory))
             {
                 System.IO.Directory.CreateDirectory(directory);
             }
-            
+
             System.IO.File.WriteAllText(DEV_SETTINGS_PATH, json);
         }
     }
+#endif
 }

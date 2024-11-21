@@ -61,6 +61,11 @@ namespace Component
         /// Events to trigger when the object is interacted with.
         /// </summary>
         [SerializeField] private List<GameEvent> InteractionEvents;
+        
+        /// <summary>
+        /// If this component is currently being observed.
+        /// </summary>
+        private bool _isObserved = false;
 
         public void Interact(GameObject interactor)
         {
@@ -75,19 +80,23 @@ namespace Component
         public void Observe(GameObject observer)
         {
             onObserve?.Invoke(observer);
+            _isObserved = true;
             UIManager.Instance.OnInteractionLabelChanged?.Invoke(interactionLabel);
         }
 
         public void StopObserving(GameObject observer)
         {
             onStopObserving?.Invoke(observer);
+            _isObserved = false;
             UIManager.Instance.OnHideInteractionLabel?.Invoke();
         }
         
         public void SetInteractionLabel(string label)
         {
             interactionLabel = label;
-            UIManager.Instance.OnInteractionLabelChanged?.Invoke(interactionLabel);
+            
+            if (_isObserved)
+                UIManager.Instance.OnInteractionLabelChanged?.Invoke(interactionLabel);
         }
     }
 }

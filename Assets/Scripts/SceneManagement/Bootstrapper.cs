@@ -23,7 +23,7 @@ namespace SceneManagement
         /// The scene loader instance.
         /// </summary>
         public SceneLoader SceneLoader { get; private set; }
-       
+
         /// <summary>
         /// Updates the scene loader instance.
         /// </summary>

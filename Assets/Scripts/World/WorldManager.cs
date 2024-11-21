@@ -1,5 +1,6 @@
 ﻿using System;
 using Events;
+using UI;
 using UnityEngine;
 using Utility;
 
@@ -21,6 +22,7 @@ namespace World
         public class WorldState
         {
             public float Time { get; set; }
+            public int Day { get; set; }
             public string Weather { get; set; }
             public string Node { get; set; }
         }
@@ -91,14 +93,40 @@ namespace World
         private void Awake()
         {
             ConsumedPillsEvent.onPillsConsumed += OnPillsConsumed;
+            EndNodeEvent.OnEndNode += HandleNodeEnd;
+            
+            UIManager.Instance.OnNodeTransitionEnd += PayPlayer;
         }
-        
+
         
         private void OnDestroy()
         {
             ConsumedPillsEvent.onPillsConsumed -= OnPillsConsumed;
+            EndNodeEvent.OnEndNode -= HandleNodeEnd;
         }
         
+        /// <summary>
+        /// Handle end of a node. Should be used to process state. 
+        /// </summary>
+        private void HandleNodeEnd()
+        {
+            _worldState.Day++;
+            PayPlayer();
+        }
+
+        /// <summary>
+        /// Pays the player for work.
+        /// </summary>
+        public void PayPlayer()
+        {
+            // TODO: this should be an event that listens for the EndNode event
+            
+            if (_playerState.ItemsShelved > 2)
+            {
+                UpdatePlayerMoney(_playerState.Money + 100f);
+            }
+            _playerState.ItemsShelved = 0;
+        }
         /// <summary>
         /// Event handler for when pills are consumed.
         /// </summary>

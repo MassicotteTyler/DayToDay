@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Boot/Boot.unity
     guid: d13c57c4f8386134089e96c806d02cc5
   - enabled: 1
+    path: Assets/Scenes/UI/SUI_HUD.unity
+    guid: bf26b4ea43cc3f147933d81e13979c69
+  - enabled: 1
+    path: Assets/Scenes/Node/Node_Base.unity
+    guid: 0177862969e5fbf4d988913e87151db8
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
@@ -23,7 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HousePrefab.unity
     guid: c052049d4b2f13d49bf85624d061ebbc
-  - enabled: 1
-    path: Assets/Scenes/UI/SUI_HUD.unity
-    guid: bf26b4ea43cc3f147933d81e13979c69
   m_configObjects: {}

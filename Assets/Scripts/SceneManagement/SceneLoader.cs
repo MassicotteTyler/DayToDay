@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using Eflatun.SceneReference;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility;
+using World;
 
 namespace SceneManagement
 {
@@ -46,6 +50,11 @@ namespace SceneManagement
         /// The active scene group.
         /// </summary>
         private SceneGroup _activeSceneGroup;
+
+        /// <summary>
+        /// The next scene group to load.
+        /// </summary>
+        private SceneGroup _nextSceneGroup;
         
         private float targetProgress;
         private bool isLoading;
@@ -156,12 +165,11 @@ namespace SceneManagement
             }
             // TODO: Have a timeout so we don't get stuck here
             var timeout = 0;
-            while (UIManager.Instance.IsTransitioning && timeout < 109)
+            while (UIManager.Instance.IsTransitioning && timeout < 10)
             {
                 // Wait for the transition to complete
-                timeout++;
                 await Task.Delay(100);
-                if (timeout >= 100)
+                if (++timeout >= 10)
                 {
                     Debug.LogError("Timeout reached while waiting for transition to complete.");
                 }
@@ -177,17 +185,44 @@ namespace SceneManagement
             await LoadSceneGroup(_activeSceneGroup);
         }
 
+        private SceneGroup DetermineNextNode()
+        {
+            return _activeSceneGroup;
+        }
+
         /// <summary>
         /// Ends the current node.
         /// </summary>
         public async Task EndNode()
         {
-            
             // Determine the next node
             // TODO: Currently just reloading the active scene group
+            _nextSceneGroup = DetermineNextNode();
 
+            if (_nextSceneGroup == _activeSceneGroup)
+            {
+                // Reload active scene through the bootstrapper
+                UIManager.Instance.OnNodeTransitionStart?.Invoke();
+                StartCoroutine(TransitionDelay(() =>
+                {
+                    SceneManager.LoadScene(0);
+                    // TODO: This is broken on WebGL for some reason
+                    // UIManager.Instance.OnNodeTransitionEnd?.Invoke();
+                }));
+                return;
+            }
+            
             // Load the next node
             await LoadSceneGroup(_activeSceneGroup);
+        }
+
+        private IEnumerator TransitionDelay(Action onComplete)
+        {
+            while (UIManager.Instance.IsTransitioning)
+            {
+                yield return null;
+            }
+            onComplete?.Invoke();
         }
         
         /// <summary>
