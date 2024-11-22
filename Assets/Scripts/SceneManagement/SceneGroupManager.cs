@@ -25,7 +25,7 @@ namespace SceneManagement
         /// <summary>
         /// Event triggered when a scene group is fully loaded.
         /// </summary>
-        public event Action OnSceneGroupLoaded = delegate { };
+        public static event Action<SceneGroup> OnSceneGroupLoaded = delegate { };
 
         private SceneGroup ActiveSceneGroup;
 
@@ -78,7 +78,7 @@ namespace SceneManagement
                 SceneManager.SetActiveScene(activeScene);
             }
 
-            OnSceneGroupLoaded?.Invoke();
+            OnSceneGroupLoaded?.Invoke(ActiveSceneGroup);
         }
 
         /// <summary>

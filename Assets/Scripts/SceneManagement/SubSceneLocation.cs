@@ -33,12 +33,12 @@ namespace SceneManagement
         private void Start()
         {
             // Register the subscene with the scene manager
-            _subSceneData = Bootstrapper.Instance.SceneLoader.GetSubSceneData(subSceneType);
+            _subSceneData = Bootstrapper.Instance.SceneLoader?.GetSubSceneData(subSceneType);
         }
 
         private void Update()
         {
-            if (_isLoaded || !_subSceneData.Reference.LoadedScene.isLoaded) return;
+            if (_isLoaded || _subSceneData == null || !_subSceneData.Reference.LoadedScene.isLoaded) return;
             MoveSubScene(_subSceneData);
             _isLoaded = true;
         }

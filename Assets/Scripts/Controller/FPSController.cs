@@ -15,7 +15,10 @@ namespace Controller
     [RequireComponent(typeof(InteractorComponent))]
     public class FPSController : MonoBehaviour
     {
-        
+        /// <summary>
+        ///  <para>Event to be invoked when the player is spawned</para>
+        /// </summary>
+        public static Action<FPSController> OnPlayerSpawned; 
         /// <summary>
         ///   <para>Walking speed of the player</para>
         /// </summary>
@@ -138,6 +141,13 @@ namespace Controller
         /// The rotation of the player on the Y axis
         /// </summary>
         private float _rotationY = 0f;
+        
+        public bool MovementEnabled { get; set; } = false;
+
+        private void Awake()
+        {
+            OnPlayerSpawned?.Invoke(this);
+        }
 
         /// <summary>
         /// The keybinding to start sprinting.
@@ -190,6 +200,7 @@ namespace Controller
         // Update is called once per frame
         private void Update()
         {
+            if (!MovementEnabled) return;
             HandleInput();
             HandleMovement();
             HandleMouseLook();
