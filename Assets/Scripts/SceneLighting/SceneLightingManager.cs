@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Events;
 using UnityEngine;
 using Utility;
 
@@ -52,7 +54,7 @@ namespace SceneLighting
         /// <param name="settingSO">new settings</param>
         public void ChangeLightSettings(LightingSettings settingsSO)
         {
-            if (settingsSO == null) return;
+            if (!settingsSO) return;
 
             //Stop any running coroutines
             if(_intensityLerpRoutine != null)
@@ -76,6 +78,18 @@ namespace SceneLighting
             RenderSettings.fogColor = settingsSO.Fog_Colour;
             RenderSettings.fogStartDistance = settingsSO.Fog_Start;
             RenderSettings.fogEndDistance = settingsSO.Fog_End;
+        }
+
+        private void Awake()
+        {
+           LightingEvent.OnLightingEvent += ChangeLightSettings; 
+           LightingModeEvent.OnLightingIntensityEvent += LerpLightingMode;
+        }
+        
+        private void OnDestroy()
+        {
+            LightingEvent.OnLightingEvent -= ChangeLightSettings;
+            LightingModeEvent.OnLightingIntensityEvent -= LerpLightingMode;
         }
 
         /// <summary>
