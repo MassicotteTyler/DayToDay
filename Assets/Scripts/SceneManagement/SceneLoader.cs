@@ -187,6 +187,16 @@ namespace SceneManagement
 
         private SceneGroup DetermineNextNode()
         {
+            // Determine the next group from the available transitions, default to current group.
+            // TODO: For now it will grab first avail, but there should be a way to priority / order these
+            foreach (var transition in _activeSceneGroup.TransitionTargets)
+            {
+                if (transition.CanTransition())
+                {
+                    return transition.SceneGroup;
+                }
+            }
+            
             return _activeSceneGroup;
         }
 
@@ -213,7 +223,7 @@ namespace SceneManagement
             }
             
             // Load the next node
-            await LoadSceneGroup(_activeSceneGroup);
+            await LoadSceneGroup(_nextSceneGroup);
         }
 
         private IEnumerator TransitionDelay(Action onComplete)

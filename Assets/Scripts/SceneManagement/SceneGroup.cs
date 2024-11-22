@@ -10,7 +10,7 @@ namespace SceneManagement
     /// Represents a group of scenes.
     /// </summary>
     [Serializable]
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/SceneGroup", order = 1)]
+    [CreateAssetMenu(fileName = "Data", menuName = "Node Management/Scene Group", order = 1)]
     public class SceneGroup : ScriptableObject
     {
         /// <summary>
@@ -22,6 +22,11 @@ namespace SceneManagement
         /// The list of scenes in the group.
         /// </summary>
         public List<SceneData> Scenes;
+        
+        /// <summary>
+        /// The list of possible transition targets.
+        /// </summary>
+        public List<SceneTransitionTarget> TransitionTargets;
 
         /// <summary>
         /// Finds the name of a scene by its type.

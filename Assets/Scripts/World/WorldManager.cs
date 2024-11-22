@@ -7,6 +7,52 @@ using Utility;
 namespace World
 {
     /// <summary>
+    /// The state of the world.
+    /// </summary>
+    public class WorldState
+    {
+        /// <summary>
+        /// The time of day.
+        /// </summary>
+        public float Time { get; set; }
+        
+        /// <summary>
+        /// Count of days elapsed.
+        /// </summary>
+        public int Day { get; set; }
+        
+        /// <summary>
+        /// The current node.
+        /// </summary>
+        public string Node { get; set; }
+    }
+
+    /// <summary>
+    /// The state of the player.
+    /// </summary>
+    public class PlayerState
+    {
+        /// <summary>
+        /// The player's money.
+        /// </summary>
+        public float Money { get; set; } = 0f;
+        
+        /// <summary>
+        /// The number of items shelved by the player.
+        /// </summary>
+        public int ItemsShelved { get; set; } = 0;
+        
+        /// <summary>
+        /// If the player has consumed pills.
+        /// </summary>
+        public bool HasConsumedPills { get; set; } = false;
+        
+        /// <summary>
+        /// The number of pills consumed by the player.
+        /// </summary>
+        public int  ConsumedPills { get; set; } = 0;
+    }
+    /// <summary>
     /// State manager for the things outside of the nodes.
     /// </summary>
     public class WorldManager : Singleton<WorldManager>
@@ -19,38 +65,11 @@ namespace World
         /// <summary>
         /// The state of the world.
         /// </summary>
-        public class WorldState
+        
+        public struct GameState
         {
-            public float Time { get; set; }
-            public int Day { get; set; }
-            public string Weather { get; set; }
-            public string Node { get; set; }
-        }
-
-        /// <summary>
-        /// The state of the player.
-        /// </summary>
-        public class PlayerState
-        {
-            /// <summary>
-            /// The player's money.
-            /// </summary>
-            public float Money { get; set; } = 0f;
-            
-            /// <summary>
-            /// The number of items shelved by the player.
-            /// </summary>
-            public int ItemsShelved { get; set; } = 0;
-            
-            /// <summary>
-            /// If the player has consumed pills.
-            /// </summary>
-            public bool HasConsumedPills { get; set; } = false;
-            
-            /// <summary>
-            /// The number of pills consumed by the player.
-            /// </summary>
-            public int  ConsumedPills { get; set; } = 0;
+            public WorldState World;
+            public PlayerState Player;
         }
         
         /// <summary>
@@ -62,6 +81,19 @@ namespace World
         /// The current state of the player.
         /// </summary>
         private PlayerState _playerState = new PlayerState();
+
+        /// <summary>
+        /// Gets the current game state.
+        /// </summary>
+        /// <returns>The current <see cref="GameState"/></returns>
+        public GameState GetGameState()
+        {
+            return new GameState
+            {
+                World = _worldState,
+                Player = _playerState
+            };
+        }
         
         /// <summary>
         /// Updates the player's money.

@@ -19,3 +19,5 @@ MonoBehaviour:
       guid: 0177862969e5fbf4d988913e87151db8
     SceneType: 0
     SubSceneType: 0
+  TransitionTargets:
+  - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
