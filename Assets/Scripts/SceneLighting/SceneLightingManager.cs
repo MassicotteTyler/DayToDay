@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Events;
+using SceneManagement;
 using UnityEngine;
 using Utility;
 
@@ -84,12 +85,23 @@ namespace SceneLighting
         {
            LightingEvent.OnLightingEvent += ChangeLightSettings; 
            LightingModeEvent.OnLightingIntensityEvent += LerpLightingMode;
+           SceneGroupManager.OnSceneGroupLoaded += HandleSceneGroupChange;
         }
         
         private void OnDestroy()
         {
             LightingEvent.OnLightingEvent -= ChangeLightSettings;
             LightingModeEvent.OnLightingIntensityEvent -= LerpLightingMode;
+            SceneGroupManager.OnSceneGroupLoaded -= HandleSceneGroupChange;
+        }
+
+        /// <summary>
+        /// To be triggered when a SceneGroup changes. Used to updated lighting settings.
+        /// </summary>
+        /// <param name="sceneGroup">The new <see cref="SceneGroup"/></param>
+        private void HandleSceneGroupChange(SceneGroup sceneGroup)
+        {
+            ChangeLightSettings(sceneGroup.LightingSettings);
         }
 
         /// <summary>
