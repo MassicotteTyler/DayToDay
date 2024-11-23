@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Eflatun.SceneReference;
 using UnityEngine;
+using LightingSettings = SceneLighting.LightingSettings;
 
 namespace SceneManagement
 {
@@ -27,6 +28,11 @@ namespace SceneManagement
         /// The list of possible transition targets.
         /// </summary>
         public List<SceneTransitionTarget> TransitionTargets;
+        
+        /// <summary>
+        /// The lighting settings for the scene group.
+        /// </summary>
+        public LightingSettings LightingSettings;
 
         /// <summary>
         /// Finds the name of a scene by its type.

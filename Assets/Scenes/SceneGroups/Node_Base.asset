@@ -19,5 +19,11 @@ MonoBehaviour:
       guid: 0177862969e5fbf4d988913e87151db8
     SceneType: 0
     SubSceneType: 0
+  - Reference:
+      asset: {fileID: 102900000, guid: bf26b4ea43cc3f147933d81e13979c69, type: 3}
+      guid: bf26b4ea43cc3f147933d81e13979c69
+    SceneType: 3
+    SubSceneType: 0
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
+  LightingSettings: {fileID: 11400000, guid: 7dc6f2bfbeecd5e449832146ad97f6d0, type: 2}
