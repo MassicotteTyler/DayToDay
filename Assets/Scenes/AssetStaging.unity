@@ -2277,7 +2277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d0c5e4e04499b4db5289057b0d0f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 531850696}
   Shader_Retro: {fileID: 4800000, guid: 6a2db4ce2928d5d46b1b7742104be9eb, type: 3}
   LightingSettings_01: {fileID: 11400000, guid: b2ce6203a7ce1e441b5338e1ec9d58d3, type: 2}
   LightingSettings_02: {fileID: 11400000, guid: e97686adc0c7c2c43b31d62e52649cad, type: 2}
@@ -2686,11 +2685,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524336790}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!20 &531850696 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5453330791630725085, guid: 6a90e32ac2c6c1340b27ebc8046e6c11, type: 3}
-  m_PrefabInstance: {fileID: 324123165}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &539106152
 PrefabInstance:
   m_ObjectHideFlags: 0
