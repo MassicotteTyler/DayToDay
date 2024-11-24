@@ -9,39 +9,6 @@ using World;
 namespace SceneManagement
 {
 
-    /// <summary>
-    /// A condition for transitioning to a scene.
-    /// </summary>
-    [Serializable]
-    public class SceneTransitionCondition
-    {
-        /// <summary>
-        /// The expression to evaluate.
-        /// </summary>
-        [TextArea]
-        [SerializeField]
-        public string Expression;
-
-        /// <summary>
-        /// Evaluates the condition.
-        /// </summary>
-        /// <param name="state">WorldState to evaluate on</param>
-        /// <returns></returns>
-        public bool Evaluate(WorldManager.GameState state)
-        {
-            try
-            {
-                return new StateExpressionEvaluator(state.Player, state.World).Evaluate(Expression);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Error evaluating expression: {Expression}");
-                Debug.LogError(e);
-                return false;
-            }
-        }
-        
-    }
     
     /// <summary>
     /// Represents a potential transition scene..
@@ -58,7 +25,7 @@ namespace SceneManagement
         /// <summary>
         /// The conditions to check if the transition should occur.
         /// </summary>
-        [SerializeField] private SceneTransitionCondition[] Conditions;
+        [SerializeField] private GameStateCondition[] Conditions;
 
         /// <summary>
         /// Evaluate the conditions to see if the transition can occur.
