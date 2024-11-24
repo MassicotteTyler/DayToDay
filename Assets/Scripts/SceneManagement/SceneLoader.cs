@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using Eflatun.SceneReference;
 using UI;
+using UI.Transition;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -164,7 +165,8 @@ namespace SceneManagement
             }
             // TODO: Have a timeout so we don't get stuck here
             var timeout = 0;
-            while (UIManager.Instance.IsTransitioning && timeout++ < 100)
+            var uiTransition = FindObjectOfType<UITransition>(); // If there is no UI Transition component, we can skip this
+            while (uiTransition != null && UIManager.Instance.IsTransitioning && timeout++ < 100)
             {
                 // Wait for the transition to complete
                 await Task.Delay(100);
