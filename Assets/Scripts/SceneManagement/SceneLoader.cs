@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using Eflatun.SceneReference;
 using UI;
+using UI.Transition;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -153,7 +154,6 @@ namespace SceneManagement
         {
             isLoading = enable;
             if (loadingCanvas) loadingCanvas.gameObject.SetActive(enable);
-            // if (loadingCamera) loadingCamera.gameObject.SetActive(enable);
 
             if (enable)
             {
@@ -165,14 +165,18 @@ namespace SceneManagement
             }
             // TODO: Have a timeout so we don't get stuck here
             var timeout = 0;
-            while (UIManager.Instance.IsTransitioning && timeout < 10)
+            var uiTransition = FindObjectOfType<UITransition>(); // If there is no UI Transition component, we can skip this
+            while (uiTransition != null && UIManager.Instance.IsTransitioning && timeout++ < 100)
             {
                 // Wait for the transition to complete
                 await Task.Delay(100);
-                if (++timeout >= 10)
-                {
-                    Debug.LogError("Timeout reached while waiting for transition to complete.");
-                }
+            }
+
+            if (loadingCamera)
+            {
+                loadingCamera.gameObject.SetActive(enable);
+                
+                if (enable) Camera.SetupCurrent(loadingCamera);
             }
         }
         
@@ -211,15 +215,18 @@ namespace SceneManagement
 
             if (_nextSceneGroup == _activeSceneGroup)
             {
+                // TODO Disabling this until we commit to fixing on WEBGL
                 // Reload active scene through the bootstrapper
-                UIManager.Instance.OnNodeTransitionStart?.Invoke();
-                StartCoroutine(TransitionDelay(() =>
-                {
-                    SceneManager.LoadScene(0);
-                    // TODO: This is broken on WebGL for some reason
-                    // UIManager.Instance.OnNodeTransitionEnd?.Invoke();
-                }));
-                return;
+                // UIManager.Instance.OnNodeTransitionStart?.Invoke();
+                // StartCoroutine(TransitionDelay(() =>
+                // {
+                //     EnableLoadingCanvas();
+                //     SceneManager.LoadScene(0);
+                //     EnableLoadingCanvas(false);
+                //     // TODO: This is broken on WebGL for some reason
+                //     // UIManager.Instance.OnNodeTransitionEnd?.Invoke();
+                // }));
+                // return;
             }
             
             // Load the next node

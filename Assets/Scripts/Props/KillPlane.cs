@@ -1,4 +1,5 @@
 ﻿using System;
+using Events;
 using SceneManagement;
 using UnityEngine;
 
@@ -35,8 +36,8 @@ namespace Props
             // Check if player
             if (other.CompareTag("Player"))
             {
-                Bootstrapper.Instance.SceneLoader?.ReloadActiveSceneGroup();
                 OnPlayerFellOffMap?.Invoke();
+                ScriptableObject.CreateInstance<EndNodeEvent>()?.Invoke(other.gameObject);
             }
         }
     }

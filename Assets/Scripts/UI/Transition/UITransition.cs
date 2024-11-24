@@ -24,6 +24,12 @@ namespace UI.Transition
         /// The duration of the transition.
         /// </summary>
         [SerializeField] private float transitionDuration = 1.5f;
+        
+        /// <summary>
+        /// At what % of the duration the transition should peak. IE: 0.5f = 50% of the duration and will be 100% visible.
+        /// </summary>
+        [SerializeField] private float transitionPeak = 0.5f;
+        
         private void Awake()
         {
            _canvasRenderer = GetComponent<CanvasRenderer>();
@@ -72,12 +78,12 @@ namespace UI.Transition
         {
             var time = 0f;
             UIManager.Instance.TransitionStart();
-            while (!_canvasRenderer.GetAlpha().Equals(targetAlpha))
+            while (time <= transitionDuration)
             {
                 if (time >= transitionDuration)
                     break;
                 time += Time.deltaTime;
-                var delta = Mathf.Clamp(time / transitionDuration, 0f, 1f);
+                var delta = Mathf.Clamp(time / (transitionDuration * transitionPeak), 0f, 1f);
                 var newAlpha = Mathf.Lerp(startingAlpha, targetAlpha, delta);
                 _canvasRenderer.SetAlpha(newAlpha);
                 yield return null;

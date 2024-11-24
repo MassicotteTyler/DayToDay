@@ -35,9 +35,11 @@ namespace World
             if (PlayerController && PlayerController != playerController)
             {
                 // We only want one player controller at a time.
-                DestroyImmediate(PlayerController.gameObject);
+                Destroy(PlayerController.gameObject);
             }
+
             PlayerController = playerController;
+            PlayerController?.Init();
         }
     }
 }

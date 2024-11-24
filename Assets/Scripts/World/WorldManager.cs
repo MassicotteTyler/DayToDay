@@ -15,11 +15,11 @@ namespace World
         /// The time of day.
         /// </summary>
         public float Time { get; set; }
-        
+
         /// <summary>
         /// Count of days elapsed.
         /// </summary>
-        public int Day { get; set; }
+        public int Day { get; set; } = 1;
         
         /// <summary>
         /// The current node.

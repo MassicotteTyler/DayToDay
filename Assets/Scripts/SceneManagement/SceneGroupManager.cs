@@ -73,9 +73,13 @@ namespace SceneManagement
             Scene activeScene = SceneManager.GetSceneByName(ActiveSceneGroup.FindSceneNameByType(SceneType.ActiveScene));
 
             // await UnloadScenes();
-            if (activeScene.IsValid())
+            if (activeScene.IsValid() && activeScene.isLoaded)
             {
                 SceneManager.SetActiveScene(activeScene);
+            }
+            else
+            {
+                Debug.LogWarning($"Active scene not found: {activeScene.name}");
             }
 
             OnSceneGroupLoaded?.Invoke(ActiveSceneGroup);
