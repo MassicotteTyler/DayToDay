@@ -26,4 +26,5 @@ MonoBehaviour:
     SubSceneType: 0
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
+  - {fileID: 11400000, guid: 05bbfab1ec6709c409004bc6d0393a9a, type: 2}
   LightingSettings: {fileID: 11400000, guid: 7dc6f2bfbeecd5e449832146ad97f6d0, type: 2}
