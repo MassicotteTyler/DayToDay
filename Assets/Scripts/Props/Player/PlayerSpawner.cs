@@ -15,6 +15,19 @@ namespace Props.Player
         {
            StartCoroutine(WaitForPlayerController());
            UIManager.Instance.OnNodeTransitionEnd += MovePlayerToSpawn;
+           
+        }
+
+
+        private void Update()
+        {
+           #if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                Debug.Log("Moving player to spawn point.");
+                MovePlayerToSpawn();
+            }
+            #endif
         }
 
         private void OnDestroy()
@@ -41,16 +54,27 @@ namespace Props.Player
         /// </summary>
         private void MovePlayerToSpawn()
         {
-            if (!PlayerManager.Instance.PlayerController)
+            var playerController = PlayerManager.Instance.PlayerController;
+            
+            if (!playerController)
             {
                 Debug.LogError("PlayerController not found.");
                 return;
             }
            
             // Move the player to the spawn point.
+            playerController.gameObject.SetActive(false);
+            playerController.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            playerController.MovementEnabled = true;
+            playerController.gameObject.SetActive(true);
+            playerController.Init();
             
-            PlayerManager.Instance.PlayerController.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            PlayerManager.Instance.PlayerController.MovementEnabled = true;
+            var playerCamera = playerController.GetComponentInChildren<Camera>(true);
+            if (playerCamera)
+            {
+                playerCamera.enabled = true;
+                Camera.SetupCurrent(playerCamera);
+            }
         }
         
         

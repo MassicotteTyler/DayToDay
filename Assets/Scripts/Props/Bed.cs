@@ -86,18 +86,19 @@ namespace Props
             if (!player || !playerCamera) return;
 
             playerCamera.enabled = false;
+            player.gameObject.SetActive(false);
             _camera.enabled = true;
             _camera.transform.position = playerCamera.transform.position;
             _camera.transform.rotation = playerCamera.transform.rotation;
-            player.gameObject.SetActive(false);
+            player.MovementEnabled = false;
             _occupiedBy = interactor;
             StartCoroutine(MoveCameraToTransform(_sleepPosition, _sleepRotation));
 
             // This can be removed once we have sleep events and node transitions
             _onCameraMoveComplete += () =>
             {
-                onSleepEvent?.Invoke();
                 _onCameraMoveComplete = null;
+                onSleepEvent?.Invoke();
             };
         }
 
@@ -136,9 +137,10 @@ namespace Props
 
             _onCameraMoveComplete += () =>
             {
-                playerCamera.enabled = true;
                 _camera.enabled = false;
-                player.gameObject.SetActive(true);
+                playerCamera.enabled = true;
+                player.MovementEnabled = true;
+                
                 _occupiedBy = null;
                 _onCameraMoveComplete = null;
             };

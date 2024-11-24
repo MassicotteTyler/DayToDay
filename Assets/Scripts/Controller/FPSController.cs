@@ -158,6 +158,13 @@ namespace Controller
         // Start is called before the first frame update
         private void Start()
         {
+            UIManager.Instance.OnNodeTransitionEnd += Init;
+            Init();
+            MovementEnabled = false;
+        }
+
+        public void Init()
+        {
             _characterController = GetComponent<CharacterController>();
             _playerCamera = GetComponentInChildren<Camera>();
             _interactorComponent = GetComponent<InteractorComponent>();
@@ -170,6 +177,9 @@ namespace Controller
             _initialYPos = _playerCamera.transform.localPosition.y;
             _rotationX = transform.localEulerAngles.x;
             _rotationY = transform.localEulerAngles.y;
+            _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 
+                _playerCamera.transform.localRotation.y, _playerCamera.transform.localRotation.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, _rotationY, transform.rotation.z);
             
             UIManager.Instance.OnEnterUIMode += DisableInteraction;
             UIManager.Instance.OnExitUIMode += EnableInteraction;
@@ -179,6 +189,7 @@ namespace Controller
         {
             UIManager.Instance.OnEnterUIMode -= DisableInteraction;
             UIManager.Instance.OnExitUIMode -= EnableInteraction;
+            UIManager.Instance.OnNodeTransitionEnd -= Init;
         }
 
         /// <summary>
@@ -186,6 +197,10 @@ namespace Controller
         /// </summary>
         private void EnableInteraction()
         {
+            if (!_interactorComponent)
+            {
+                _interactorComponent = GetComponent<InteractorComponent>();
+            }
             _interactorComponent.enabled = true;
         }
         
@@ -194,6 +209,10 @@ namespace Controller
         /// </summary>
         private void DisableInteraction()
         {
+            if (!_interactorComponent)
+            {
+                _interactorComponent = GetComponent<InteractorComponent>();
+            }
             _interactorComponent.enabled = false;
         }
 

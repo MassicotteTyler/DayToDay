@@ -2072,7 +2072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453450815186441724, guid: f0c900e748f2bc842aa87972970d75c0, type: 3}
       propertyPath: InteractionEvents.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4453450815186441724, guid: f0c900e748f2bc842aa87972970d75c0, type: 3}
       propertyPath: InteractionEvents.Array.data[0]
@@ -3025,7 +3025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isOpen: 0
   speed: 0.3
-  isLocked: 1
+  isLocked: 0
   onStateChange:
     m_PersistentCalls:
       m_Calls: []
