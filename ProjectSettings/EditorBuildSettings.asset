@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/Title_Screen.unity
     guid: 238c5246bcd761e43906859c0d0e3556
+  - enabled: 1
+    path: Assets/Scenes/Node/Node_Apocalypse.unity
+    guid: 502bc9251e1c786489a0a6e9f901bc07
+  - enabled: 1
+    path: Assets/Scenes/BodegaGreybox.unity
+    guid: 1d3c499d12c5bf241a26f38535b7a353
   m_configObjects: {}
