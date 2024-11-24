@@ -75,7 +75,7 @@ public class VehicleController : MonoBehaviour
         //Find direction
         Vector3 dir = (_destination.position - transform.position).normalized;
         //Orient the vehicle
-        transform.localRotation = Quaternion.LookRotation(-dir);
+        transform.rotation = Quaternion.LookRotation(-dir) * Quaternion.Euler(new Vector3(0, 90, 0));
 
         //Find distance
         float distance = (_destination.position - transform.position).magnitude;

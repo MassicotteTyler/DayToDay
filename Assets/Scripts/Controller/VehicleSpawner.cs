@@ -8,14 +8,14 @@ public class VehicleSpawner : MonoBehaviour
     public Transform Destination;
     public float Vehicle_Velocity;
 
-    public bool AutoLaunch;
+    public bool AutoLaunchOnStart;
     [Tooltip("Only used when AutoLaunch is true")]
     public float Delay_Max;
     [Tooltip("Only used when AutoLaunch is true")]
     public float Delay_Min;
 
     [Header("Pooled Vehicles")]
-    public List<GameObject> VehiclePool;
+    public GameObject VehiclePool;
 
     /// <summary>
     /// Queue used for available pooled vehicles
@@ -27,15 +27,6 @@ public class VehicleSpawner : MonoBehaviour
     /// </summary>
     Coroutine _autoLaunchRoutine;
 
-    /// Temporary manual launching
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown("k"))
-    //    {
-    //        LaunchNextAvailable();
-    //    }
-    //}
-
     /// <summary>
     /// Called by Unity when the GameObject is first instantiated
     /// </summary>
@@ -44,18 +35,44 @@ public class VehicleSpawner : MonoBehaviour
         _availableVehicles = new Queue<VehicleController>();
 
         //Enqueue VehicleControllers from VehiclePool list
-        foreach(GameObject go in VehiclePool)
+        foreach(Transform trans in VehiclePool.transform)
         {
-            VehicleController controller = go.GetComponent<VehicleController>();
+            VehicleController controller = trans.GetComponent<VehicleController>();
             if(controller != null)
             {
-                _availableVehicles.Enqueue(controller);
+                // Put a VehicleController into the pool
+                ReleaseReusable(controller);
             }
         }
 
-        if (AutoLaunch)
+        if (AutoLaunchOnStart)
         {
-            _autoLaunchRoutine = StartCoroutine(AutomateLaunchingRoutine());
+            AutoLaunch(true);
+        }
+    }
+
+    /// <summary>
+    /// Start/Stop automated launching
+    /// </summary>
+    /// <param name="state"></param>
+    public void AutoLaunch(bool state)
+    {
+        if (state)
+        {
+            //Start the coroutine if it is not running
+            if(_autoLaunchRoutine == null)
+            {
+                _autoLaunchRoutine = StartCoroutine(AutomateLaunchingRoutine());
+            }
+        }
+        else
+        {
+            //Stop coroutine if there is one running
+            if(_autoLaunchRoutine != null)
+            {
+                StopCoroutine(_autoLaunchRoutine);
+                _autoLaunchRoutine = null;
+            }
         }
     }
 
@@ -67,13 +84,9 @@ public class VehicleSpawner : MonoBehaviour
     IEnumerator AutomateLaunchingRoutine()
     {
         //Delay between launching vehicles.
-        //Random value is obtained from Sin function using time since application start
-        float delay = Mathf.Lerp(Delay_Max, Delay_Min, Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup)));
+        float delay = Mathf.Lerp(Delay_Max, Delay_Min, Random.Range(0.0f, 1.0f));
 
-        //Random.Range version. UnityEngine.Random is global.
-        //float delay = Mathf.Lerp(Delay_Max, Delay_Min, Random.Range(0.0f, 1.0f));
-
-        while (AutoLaunch)
+        while (true)
         {
             delay -= Time.deltaTime;
 
@@ -81,10 +94,8 @@ public class VehicleSpawner : MonoBehaviour
             {
                 LaunchNextAvailable();
 
-                //Sin version
-                delay = Mathf.Lerp(Delay_Max, Delay_Min, Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup)));
-                //Random.Range version
-                //delay = Mathf.Lerp(Delay_Max, Delay_Min, Random.Range(0.0f, 1.0f));
+                //Reset delay
+                delay = Mathf.Lerp(Delay_Max, Delay_Min, Random.Range(0.0f, 1.0f));
             }
 
             yield return null;
@@ -101,6 +112,9 @@ public class VehicleSpawner : MonoBehaviour
 
         //Get vehicle controller
         VehicleController controller = _availableVehicles.Dequeue();
+
+        //Enable gameobject
+        controller.gameObject.SetActive(true);
 
         //Set controller variables
         controller.SetDestination(Destination);
@@ -123,6 +137,7 @@ public class VehicleSpawner : MonoBehaviour
 
         //Move to starting position (this script's transform)
         controller.TranslateTo(transform);
+        controller.gameObject.SetActive(false);
         _availableVehicles.Enqueue(controller);
     }
 }
