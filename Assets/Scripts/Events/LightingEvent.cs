@@ -21,9 +21,9 @@ namespace Events
         [SerializeField]
         private SceneLighting.LightingSettings settings;
         
-        public override void Invoke(GameObject invoker = null)
+        protected override void Execute(GameObject invoker = null)
         {
-            base.Invoke();
+            base.Execute();
             OnLightingEvent?.Invoke(settings);
         }
     }
@@ -45,9 +45,9 @@ namespace Events
         [SerializeField]
         private LightingMode mode;
         
-        public override void Invoke(GameObject invoker = null)
+        protected override void Execute(GameObject invoker = null)
         {
-            base.Invoke();
+            base.Execute();
             OnLightingIntensityEvent?.Invoke(mode);
         }
     }

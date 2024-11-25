@@ -9,9 +9,9 @@ namespace Events
     [CreateAssetMenu(fileName = "Data", menuName = "Game Events/Bodega Item", order = 3)]
     public class BodegaItemEvent : GameEvent 
     {
-        public override async void Invoke(GameObject invoker = null)
+        protected override async void Execute(GameObject invoker = null)
         {
-            base.Invoke();
+            base.Execute();
             Debug.Log("Bodega item event invoked.");
             WorldManager.Instance.PlayerShelvedItem();
             Destroy(invoker);

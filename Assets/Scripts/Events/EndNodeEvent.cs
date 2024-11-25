@@ -8,9 +8,9 @@ namespace Events
     public class EndNodeEvent : GameEvent
     {
         public static Action OnEndNode;
-        public override async void Invoke(GameObject invoker = null)
+        protected override async void Execute(GameObject invoker = null)
         {
-            base.Invoke();
+            base.Execute();
             OnEndNode?.Invoke();
             await Bootstrapper.Instance.SceneLoader.EndNode();
         }
