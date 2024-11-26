@@ -24,9 +24,9 @@ namespace Events
         /// <summary>
         /// Invokes the event to load the specified scene group.
         /// </summary>
-        public override async void Invoke(GameObject invoker = null)
+        protected override async void Execute(GameObject invoker = null)
         {
-            base.Invoke();
+            base.Execute();
             if (!SceneGroup)
             {
                 Debug.LogError($"Event Error |{EventName}|: SceneGroup is null.");

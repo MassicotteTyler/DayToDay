@@ -191,6 +191,10 @@ namespace SceneManagement
 
         private SceneGroup DetermineNextNode()
         {
+            if (!_activeSceneGroup.IgnorePills && WorldManager.Instance.GetGameState().Player.HasConsumedPills)
+            {
+                return SceneGroups[0];
+            }
             // Determine the next group from the available transitions, default to current group.
             // TODO: For now it will grab first avail, but there should be a way to priority / order these
             foreach (var transition in _activeSceneGroup.TransitionTargets)

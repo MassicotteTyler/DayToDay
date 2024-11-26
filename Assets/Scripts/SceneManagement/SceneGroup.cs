@@ -20,6 +20,11 @@ namespace SceneManagement
         public string GroupName = "New Scene Group";
 
         /// <summary>
+        /// If true, the scene group will ignore pill consumption on transition.
+        /// </summary>
+        [SerializeField] public bool IgnorePills = false;
+        
+        /// <summary>
         /// The list of scenes in the group.
         /// </summary>
         public List<SceneData> Scenes;

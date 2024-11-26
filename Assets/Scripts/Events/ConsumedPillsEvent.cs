@@ -14,7 +14,7 @@ namespace Events
         /// </summary>
         public static Action onPillsConsumed;
 
-        public override void Invoke(GameObject invoker = null)
+        protected override void Execute(GameObject invoker = null)
         {
             onPillsConsumed?.Invoke();
         }
