@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f83e4d94c5ce94192021631c7fc3cf, type: 3}
   m_Name: Indoors_GreenHaze
   m_EditorClassIdentifier: 
-  Skybox_Material: {fileID: 2100000, guid: 5721b6fd7a1466443a9c8c42261605b1, type: 2}
-  Ambient_Colour: {r: 0.27911487, g: 0.38679248, b: 0.24630654, a: 1}
+  Skybox_Material: {fileID: 2100000, guid: 6386d72f9836d494f8a5030f4e5b7ef3, type: 2}
+  Ambient_Colour: {r: 0.2294856, g: 0.254717, b: 0.22227661, a: 1}
   Ambient_Intensity_Indoor: 0
   Fog_Enabled: 1
-  Fog_Colour: {r: 0.22095881, g: 0.4245283, b: 0.14618191, a: 0.39215687}
+  Fog_Colour: {r: 0.123280816, g: 0.21698111, b: 0.08904414, a: 0.39215687}
   Fog_Start: 0
-  Fog_End: 25
+  Fog_End: 6
