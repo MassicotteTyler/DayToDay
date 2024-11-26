@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb002c8102a34d52a4f5893c24b98cff, type: 3}
   m_Name: Event_Lighting_Test
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 7dc6f2bfbeecd5e449832146ad97f6d0, type: 2}
+  settings: {fileID: 11400000, guid: 9cce5c411a76a5b45b5a6a70cc4fe138, type: 2}
