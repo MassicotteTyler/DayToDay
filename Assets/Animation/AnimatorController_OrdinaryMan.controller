@@ -24,7 +24,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: Blend_Speed
+  m_BlendParameter: Blend_Move
   m_BlendParameterY: Blend
   m_MinThreshold: 0
   m_MaxThreshold: 1
@@ -83,7 +83,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: Blend_Speed
+  m_BlendParameter: Blend_Move
   m_BlendParameterY: Blend
   m_MinThreshold: 0
   m_MaxThreshold: 1
@@ -99,7 +99,7 @@ AnimatorController:
   m_Name: AnimatorController_OrdinaryMan
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Blend_Speed
+  - m_Name: Blend_Move
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -172,7 +172,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -8089591491609175832}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: Blend_Move
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -277,7 +277,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: -3269596974667278835}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: Blend_Move
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 

@@ -580,6 +580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7099314230956070902}
+  - component: {fileID: 7428288942827569622}
   - component: {fileID: 8865759551052567957}
   m_Layer: 0
   m_Name: Humanoid_OrdinaryMan
@@ -604,6 +605,23 @@ Transform:
   - {fileID: 5087492024272895281}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7428288942827569622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171720969656150728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcf78a6a0431ad4795412616c80da28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 1.5
+  _behaviourOnStart: 3
+  _danceOnStart: 0
+  _hideOnStart: 0
+  Waypoints: []
 --- !u!143 &8865759551052567957
 CharacterController:
   m_ObjectHideFlags: 0
