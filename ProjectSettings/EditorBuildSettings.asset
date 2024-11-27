@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Node/House Nodes/Node_House_With_Pit.unity
     guid: 50081af4d09d6894397e9973088c3792
+  - enabled: 1
+    path: Assets/Scenes/Node/Bodega Nodes/Node_OvergrownBodega.unity
+    guid: aa07d3340f3c6a543bef05e38accca44
   m_configObjects: {}
