@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Indoors_GreenHaze
   m_EditorClassIdentifier: 
   Skybox_Material: {fileID: 2100000, guid: 6386d72f9836d494f8a5030f4e5b7ef3, type: 2}
-  Ambient_Colour: {r: 0.2294856, g: 0.254717, b: 0.22227661, a: 1}
+  Ambient_Colour: {r: 0.31198823, g: 0.33962262, b: 0.30277675, a: 1}
   Ambient_Intensity_Indoor: 0
   Fog_Enabled: 1
-  Fog_Colour: {r: 0.123280816, g: 0.21698111, b: 0.08904414, a: 0.39215687}
-  Fog_Start: 0
-  Fog_End: 6
+  Fog_Colour: {r: 0.19623308, g: 0.2924528, b: 0.16415983, a: 0.39215687}
+  Fog_Start: 6
+  Fog_End: 18

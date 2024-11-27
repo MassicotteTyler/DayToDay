@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: Node_Test_Pit_House
   m_EditorClassIdentifier: 
   GroupName: PitHouse
+  IgnorePills: 0
   Scenes:
   - Reference:
       asset: {fileID: 102900000, guid: 50081af4d09d6894397e9973088c3792, type: 3}
       guid: 50081af4d09d6894397e9973088c3792
+    SceneType: 0
+    SubSceneType: 0
+  - Reference:
+      asset: {fileID: 102900000, guid: aa07d3340f3c6a543bef05e38accca44, type: 3}
+      guid: aa07d3340f3c6a543bef05e38accca44
     SceneType: 1
-    SubSceneType: 1
+    SubSceneType: 2
   - Reference:
       asset: {fileID: 102900000, guid: bf26b4ea43cc3f147933d81e13979c69, type: 3}
       guid: bf26b4ea43cc3f147933d81e13979c69
@@ -26,4 +32,4 @@ MonoBehaviour:
     SubSceneType: 0
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
-  LightingSettings: {fileID: 11400000, guid: 8f6a02ca30f382049aee04a81fcca2c6, type: 2}
+  LightingSettings: {fileID: 0}
