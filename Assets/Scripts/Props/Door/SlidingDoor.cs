@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using SceneManagement;
 using UnityEngine;
 
 namespace Props.Door
@@ -26,6 +27,34 @@ namespace Props.Door
         private Vector3 closePosition;
         
         private void Awake()
+        {
+            openPosition = openTransform.position;
+            closePosition = transform.position;
+            
+            SceneLoader.OnSubSceneMoved += OnSubSceneMoved;
+        }
+        
+        private void OnDestroy()
+        {
+            SceneLoader.OnSubSceneMoved -= OnSubSceneMoved;
+        }
+        
+        /// <summary>
+        /// Event handler for when a subscene is moved.
+        /// </summary>
+        /// <param name="sceneName">Name of the subscene that was moved</param>
+        private void OnSubSceneMoved(string sceneName)
+        {
+            if (sceneName.Equals(gameObject.scene.name))
+            {
+                UpdateDoorPosition();
+            }
+        }
+        
+        /// <summary>
+        /// Update the open and close positions of the door.
+        /// </summary>
+        private void UpdateDoorPosition()
         {
             openPosition = openTransform.position;
             closePosition = transform.position;

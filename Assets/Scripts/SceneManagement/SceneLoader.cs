@@ -18,6 +18,11 @@ namespace SceneManagement
     public class SceneLoader : MonoBehaviour
     {
         /// <summary>
+        /// Event triggered when a subscene is moved.
+        /// </summary>
+        public static Action<string> OnSubSceneMoved;
+        
+        /// <summary>
         /// The loading bar image.
         /// </summary>
         [SerializeField] private Image loadingBar;

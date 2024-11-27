@@ -64,6 +64,8 @@ namespace SceneManagement
                 sceneObject.transform.position = transform.position + sceneObject.transform.position;
                 sceneObject.transform.rotation = transform.rotation * sceneObject.transform.rotation;
             }
+            
+            SceneLoader.OnSubSceneMoved?.Invoke(sceneData.Name);
         }
 
 #if UNITY_EDITOR
