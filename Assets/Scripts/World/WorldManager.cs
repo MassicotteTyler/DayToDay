@@ -48,9 +48,19 @@ namespace World
         public bool HasConsumedPills { get; set; } = false;
         
         /// <summary>
+        /// If the player consumed pills the previous day.
+        /// </summary>
+        public bool HasConsumedPillsPrevDay { get; set; } = false;
+        
+        /// <summary>
         /// The number of pills consumed by the player.
         /// </summary>
         public int  ConsumedPills { get; set; } = 0;
+
+        /// <summary>
+        /// If the player has seen the green man.
+        /// </summary
+        public bool HasSeenGreenMan { get; set; } = false;
     }
     /// <summary>
     /// State manager for the things outside of the nodes.
@@ -125,6 +135,7 @@ namespace World
         private void Awake()
         {
             ConsumedPillsEvent.onPillsConsumed += OnPillsConsumed;
+            SeenGreenManEvent.seenGreenMan += OnSeenGreenMan;
             EndNodeEvent.OnEndNode += HandleNodeEnd;
             
             UIManager.Instance.OnNodeTransitionEnd += PayPlayer;
@@ -134,6 +145,7 @@ namespace World
         private void OnDestroy()
         {
             ConsumedPillsEvent.onPillsConsumed -= OnPillsConsumed;
+            SeenGreenManEvent.seenGreenMan -= OnSeenGreenMan;
             EndNodeEvent.OnEndNode -= HandleNodeEnd;
         }
         
@@ -143,6 +155,8 @@ namespace World
         private void HandleNodeEnd()
         {
             _worldState.Day++;
+            _playerState.HasConsumedPillsPrevDay = _playerState.HasConsumedPills;
+            _playerState.HasConsumedPills = false;
             PayPlayer();
         }
 
@@ -166,6 +180,11 @@ namespace World
         {
             _playerState.HasConsumedPills = true;
             _playerState.ConsumedPills++;
+        }
+
+        private void OnSeenGreenMan()
+        {
+            _playerState.HasSeenGreenMan = true;
         }
     }
 }
