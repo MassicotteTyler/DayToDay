@@ -35,7 +35,7 @@ namespace Events
                 return;
             }
             EventBus.Instance.OnEventTriggered?.Invoke(this);
-            Execute();
+            Execute(invoker);
         }
 
         /// <summary>
