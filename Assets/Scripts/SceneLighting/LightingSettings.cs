@@ -11,6 +11,9 @@ namespace SceneLighting
     [CreateAssetMenu(fileName = "NewLightingSettings", menuName = "ScriptableObjects/LightingSettings", order = 2)]
     public class LightingSettings : ScriptableObject
     {
+        public bool UseCustomShader;
+        public Shader Shader_Retro;
+
         public Material Skybox_Material;
 
         [ColorUsage(false, true)]

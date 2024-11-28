@@ -76,9 +76,13 @@ namespace SceneLighting
 
             //Fog settings
             RenderSettings.fog = settingsSO.Fog_Enabled;
+            RenderSettings.fogMode = FogMode.Linear;
             RenderSettings.fogColor = settingsSO.Fog_Colour;
             RenderSettings.fogStartDistance = settingsSO.Fog_Start;
             RenderSettings.fogEndDistance = settingsSO.Fog_End;
+
+            //Enable custom shader
+            EnableCustomShader(settingsSO.UseCustomShader);
         }
 
         private void Awake()
@@ -102,6 +106,22 @@ namespace SceneLighting
         private void HandleSceneGroupChange(SceneGroup sceneGroup)
         {
             ChangeLightSettings(sceneGroup.LightingSettings);
+        }
+
+        /// <summary>
+        /// Enabled the replacement shader on Camera.main
+        /// </summary>
+        /// <param name="state"></param>
+        public void EnableCustomShader(bool state)
+        {
+            if (state && _currentSettings.Shader_Retro)
+            {
+                Camera.main.SetReplacementShader(_currentSettings.Shader_Retro, "RenderType");
+            }
+            else
+            {
+                Camera.main.ResetReplacementShader();
+            }
         }
 
         /// <summary>

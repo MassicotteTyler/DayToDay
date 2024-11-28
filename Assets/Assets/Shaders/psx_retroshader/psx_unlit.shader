@@ -40,10 +40,10 @@ Shader "psx/unlit" {
 				//Vertex snapping
 				float4 snapToPixel = UnityObjectToClipPos(v.vertex);
 				float4 vertex = snapToPixel;
-				vertex.xyz = snapToPixel.xyz / snapToPixel.w;
+				vertex.xyz = snapToPixel.xyz / snapToPixel.w; //Vertex in 3D space
 				vertex.x = floor(160 * vertex.x) / 160;
 				vertex.y = floor(120 * vertex.y) / 120;
-				vertex.xyz *= snapToPixel.w;
+				vertex.xyz *= snapToPixel.w; //Vertex back in 2D space
 				o.pos = vertex;
 
 				//Vertex lighting 
@@ -69,11 +69,10 @@ Shader "psx/unlit" {
 				o.colorFog.a = clamp(fogDensity,0,1);
 
 				//Cut out polygons
-				if (distance > unity_FogStart.z + unity_FogColor.a * 255)
-				{
-					o.pos.w = 0;
-				}
-
+				//if (distance > unity_FogStart.z + unity_FogColor.a * 255)
+				//{
+				//	o.pos.w = 0;
+				//}
 
 				return o;
 			}
