@@ -35,8 +35,18 @@ namespace World
         /// <summary>
         /// The player's money.
         /// </summary>
-        public float Money { get; set; } = 0f;
-        
+        public float Money { get; set; } = 0;
+
+        ///<summary>
+        /// If the player was paid the previous day.
+        /// </summary>
+        public float PrevDayMoney { get; set; } = 0f;
+
+        ///<summary>
+        /// If the player has more money than the previous day.
+        /// </summary>
+        public bool HasMoreMoneyToday = false;
+
         /// <summary>
         /// The number of items shelved by the player.
         /// </summary>
