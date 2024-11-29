@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f76d7dc5ead469f9930af9d5cb2c9a0, type: 3}
-  m_Name: Event_Audio_Door
+  m_Name: Event_Audio_CrushBox
   m_EditorClassIdentifier: 
   Conditions: []
-  clip: {fileID: 8300000, guid: 048b0a0671c6bb54890a686d5c844aa2, type: 3}
+  clip: {fileID: 8300000, guid: 3df75e99723b20e46a53a44672c98279, type: 3}
   playAtPosition: 1
