@@ -10,6 +10,16 @@ public class VehicleController : MonoBehaviour
     public Animator VehicleAnimator;
 
     /// <summary>
+    /// Audio Source for the vehicle
+    /// </summary>
+    public AudioSource VehicleAudioSource;
+
+    /// <summary>
+    /// AudioClip for Honk sound
+    /// </summary>
+    public AudioClip AudioClip_Honk;
+
+    /// <summary>
     /// On destination reached event
     /// </summary>
     public delegate void OnDesitnationReached(VehicleController controller);
@@ -24,6 +34,16 @@ public class VehicleController : MonoBehaviour
     /// Constant velocity when the vehicle moves
     /// </summary>
     float _velocity;
+
+    /// <summary>
+    /// Is the engine running (animations and sound)
+    /// </summary>
+    bool _engineOn = false;
+
+    /// <summary>
+    /// Can the vehicle honk
+    /// </summary>
+    bool _canHonk = true;
 
     /// <summary>
     /// Manage the movement coroutine
@@ -83,7 +103,7 @@ public class VehicleController : MonoBehaviour
         float travelled = 0.0f;
 
         //Make vehicle animations start
-        SetAnimator_Engine(true);
+        Set_Engine(true);
         SetAnimator_Speed(3.0f);
 
         //Move until total distance is travelled
@@ -96,7 +116,7 @@ public class VehicleController : MonoBehaviour
         }
 
         //Make vehicle animations stop/idle
-        SetAnimator_Engine(false);
+        Set_Engine(false);
         SetAnimator_Speed(0.0f);
 
         //Destination reached
@@ -118,7 +138,7 @@ public class VehicleController : MonoBehaviour
         _moveRoutine = null;
 
         //Make vehicle animations stop/idle
-        SetAnimator_Engine(false);
+        Set_Engine(false);
         SetAnimator_Speed(0.0f);
     }
 
@@ -150,10 +170,43 @@ public class VehicleController : MonoBehaviour
     /// Set engine animations on/off
     /// </summary>
     /// <param name="state">Engine on/off state</param>
-    public void SetAnimator_Engine(bool state)
+    public void Set_Engine(bool state)
     {
-        if(VehicleAnimator == null) return;
+        if (state)
+        {
+            VehicleAudioSource?.Play();
+            VehicleAnimator?.SetFloat("Engine", 1.0f);
+        }
+        else
+        {
+            VehicleAudioSource?.Stop();
+            VehicleAnimator?.SetFloat("Engine", 0.0f);
+        }
 
-        VehicleAnimator.SetFloat("Engine", state ? 1.0f : 0.0f);
+        _engineOn = state;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //vehicle is not on
+        if (!_engineOn) return;
+
+        // only detect player
+        if (!other.CompareTag("Player") || !_canHonk || !AudioClip_Honk) return;
+
+        VehicleAudioSource?.PlayOneShot(AudioClip_Honk, 0.8f);
+
+        _canHonk = false;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //vehicle is not on
+        if (!_engineOn) return;
+
+        // only detect player
+        if (!other.CompareTag("Player")) return;
+
+        _canHonk = true;
     }
 }
