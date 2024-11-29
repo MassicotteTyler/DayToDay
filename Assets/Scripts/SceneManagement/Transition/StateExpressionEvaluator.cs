@@ -91,7 +91,30 @@ namespace SceneManagement.Transition
                 Debug.LogError($"Invalid property path: {parts[0]}");
                 return false;
             }
-            var compareValue = ParseValue(parts[2], value.GetType());
+            
+            // check if we're comparing to another field ex Player.Money
+            object compareValue;
+            if (parts[2].Contains("."))
+            {
+                var comparePropertyPath = parts[2].Split('.');
+                if (comparePropertyPath.Length != 2)
+                {
+                    Debug.LogError($"Invalid property path: {parts[2]}");
+                    return false;
+                }
+                
+                compareValue = GetPropertyValue(comparePropertyPath[0], comparePropertyPath[1]);
+                if (compareValue == null)
+                {
+                    Debug.LogError($"Invalid property path: {parts[2]}");
+                    return false;
+                }        
+            }
+            else
+            {
+                // Otherwise, parse the value
+                compareValue = ParseValue(parts[2], value.GetType());
+            }
             
             // Compare based on the operator
             return CompareValues((IComparable) value, parts[1], (IComparable) compareValue);
@@ -151,6 +174,13 @@ namespace SceneManagement.Transition
         /// <returns></returns>
         private bool CompareValues(IComparable left, string op, IComparable right)
         {
+            // Ensure the comparables are of the same type
+            if (left.GetType() != right.GetType())
+            {
+                Debug.LogWarning($"Trying to compare different types: {left.GetType()} and {right.GetType()}");
+                right = (IComparable)Convert.ChangeType(right, left.GetType());
+            }
+            
             switch (op)
             {
                 case ">":
