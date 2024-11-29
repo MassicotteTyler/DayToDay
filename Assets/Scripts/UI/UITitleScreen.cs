@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SceneManagement;
+using UI;
 
 public class UITitleScreen : MonoBehaviour
 {
@@ -9,6 +11,22 @@ public class UITitleScreen : MonoBehaviour
     /// </summary>
     [Tooltip("Triggered on Start Game button press")]
     public Events.GameEvent LoadSceneEvent;
+
+    private void Start()
+    {
+        UIManager.Instance.OnNodeTransitionEnd += EnableCursor;
+    }
+
+    private void OnDestroy()
+    {
+        UIManager.Instance.OnNodeTransitionEnd -= EnableCursor;
+    }
+
+    void EnableCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
     /// <summary>
     /// Invoke a GameEvent. 

@@ -88,7 +88,7 @@ namespace SceneManagement
         /// </summary>
         private async void Start()
         {
-            await LoadSceneGroupIndex(0)!;
+            await LoadSceneGroupIndex(1)!;
             await Task.Delay(2000);
         }
 

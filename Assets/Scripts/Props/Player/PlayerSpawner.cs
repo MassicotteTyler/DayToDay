@@ -11,13 +11,17 @@ namespace Props.Player
     /// </summary>
     public class PlayerSpawner : MonoBehaviour
     {
+        /// <summary>
+        /// Should this spawn position be a camera position
+        /// Camera position means no player Init or movement
+        /// </summary>
+        public bool CameraMode = false;
+
         private void Awake()
         {
            StartCoroutine(WaitForPlayerController());
            UIManager.Instance.OnNodeTransitionEnd += MovePlayerToSpawn;
-           
         }
-
 
         private void Update()
         {
@@ -65,9 +69,11 @@ namespace Props.Player
             // Move the player to the spawn point.
             playerController.gameObject.SetActive(false);
             playerController.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            playerController.MovementEnabled = true;
+            playerController.MovementEnabled = !CameraMode;
             playerController.gameObject.SetActive(true);
-            playerController.Init();
+
+            if(!CameraMode)
+                playerController.Init();
             
             var playerCamera = playerController.GetComponentInChildren<Camera>(true);
             if (playerCamera)

@@ -45,7 +45,7 @@ public class UIEscapeMenu : MonoBehaviour
 
     private void Awake()
     {
-        _showing = false;
+        _showing = false; 
     }
 
     /// <summary>

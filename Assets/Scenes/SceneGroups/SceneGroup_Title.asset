@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: SceneGroup_Title
   m_EditorClassIdentifier: 
   GroupName: Title Scene Group
+  IgnorePills: 1
   Scenes:
   - Reference:
       asset: {fileID: 102900000, guid: 238c5246bcd761e43906859c0d0e3556, type: 3}
       guid: 238c5246bcd761e43906859c0d0e3556
     SceneType: 3
     SubSceneType: 0
+  - Reference:
+      asset: {fileID: 102900000, guid: cc3f15aca808fff44b1bb6cf7c7ecbbc, type: 3}
+      guid: cc3f15aca808fff44b1bb6cf7c7ecbbc
+    SceneType: 0
+    SubSceneType: 0
+  TransitionTargets: []
+  LightingSettings: {fileID: 11400000, guid: e97686adc0c7c2c43b31d62e52649cad, type: 2}
