@@ -42,11 +42,6 @@ namespace World
         /// </summary>
         public float PrevDayMoney { get; set; } = 0f;
 
-        ///<summary>
-        /// If the player has more money than the previous day.
-        /// </summary>
-        public bool HasMoreMoneyToday = false;
-
         /// <summary>
         /// The number of items shelved by the player.
         /// </summary>
@@ -179,6 +174,7 @@ namespace World
             
             if (_playerState.ItemsShelved > 2)
             {
+                _playerState.PrevDayMoney = _playerState.Money;
                 UpdatePlayerMoney(_playerState.Money + 100f);
             }
             _playerState.ItemsShelved = 0;
