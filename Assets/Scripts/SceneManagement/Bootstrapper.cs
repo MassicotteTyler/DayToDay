@@ -68,7 +68,7 @@ namespace SceneManagement
             }
             #endif
             
-            SceneManager.LoadSceneAsync(sceneBuildIndex: 0, LoadSceneMode.Single);
+            SceneManager.LoadScene(sceneBuildIndex: 0, LoadSceneMode.Single);
         }
 
 

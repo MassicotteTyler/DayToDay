@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,13 +36,13 @@ namespace SceneManagement
         /// <param name="group">The scene group to load.</param>
         /// <param name="progress">Progress reporter for the loading process.</param>
         /// <param name="reloadDupScenes">If set to <c>true</c>, duplicate scenes will be reloaded.</param>
-        public async Task LoadScenes(SceneGroup group, IProgress<float> progress, bool reloadDupScenes = false)
+        public IEnumerator LoadScenes(SceneGroup group, IProgress<float> progress, bool reloadDupScenes = false)
         {
             ActiveSceneGroup = group;
             var loadedScenes = new List<string>();
 
             // TODO: Should scenes unload before or after?
-            await UnloadScenes();
+            yield return UnloadScenes();
             var sceneCount = SceneManager.sceneCount;
             for (var index = 0; index < sceneCount; index++)
             {
@@ -67,7 +68,7 @@ namespace SceneManagement
             while (!operationGroup.IsDone)
             {
                 progress?.Report(operationGroup.Progress);
-                await Task.Delay(100);
+                yield return new WaitForSeconds(.1f);
             }
 
             Scene activeScene = SceneManager.GetSceneByName(ActiveSceneGroup.FindSceneNameByType(SceneType.ActiveScene));
@@ -88,7 +89,7 @@ namespace SceneManagement
         /// <summary>
         /// Unloads all currently loaded scenes except the active scene and the boot scene.
         /// </summary>
-        public async Task UnloadScenes()
+        public IEnumerator UnloadScenes()
         {
             var scenes = new List<string>();
             var activeScene = SceneManager.GetActiveScene().name;
@@ -128,7 +129,7 @@ namespace SceneManagement
             // Wait until all AsyncOperations in the group are done
             while (!operationGroup.IsDone)
             {
-                await Task.Delay(100);
+                yield return null;
             }
 
             // Optional: Unload unused assets from memory

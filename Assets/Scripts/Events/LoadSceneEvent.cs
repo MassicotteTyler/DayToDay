@@ -24,7 +24,7 @@ namespace Events
         /// <summary>
         /// Invokes the event to load the specified scene group.
         /// </summary>
-        protected override async void Execute(GameObject invoker = null)
+        protected override void Execute(GameObject invoker = null)
         {
             base.Execute();
             if (!SceneGroup)
@@ -33,7 +33,7 @@ namespace Events
                 return;
             }
             // TODO: This should be event chained
-            await Bootstrapper.Instance.SceneLoader.LoadSceneGroup(SceneGroup);
+            Bootstrapper.Instance.SceneLoader.OnLoadSceneGroup?.Invoke(SceneGroup);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Events
         {
             base.Execute();
             OnEndNode?.Invoke();
-            await Bootstrapper.Instance.SceneLoader.EndNode();
+            Bootstrapper.Instance.SceneLoader.EndNode();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Eflatun.SceneReference;
 using UI;
 using UI.Transition;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,11 @@ namespace SceneManagement
     /// </summary>
     public class SceneLoader : MonoBehaviour
     {
+        /// <summary>
+        ///  Event triggered when a scene group is loaded.
+        /// </summary>
+        public Action<SceneGroup> OnLoadSceneGroup;
+        
         /// <summary>
         /// Event triggered when a subscene is moved.
         /// </summary>
@@ -81,15 +87,20 @@ namespace SceneManagement
 
             // TODO: This race condition is not ideal. We should refactor this to be more robust.
             Bootstrapper.Instance.UpdateSceneLoader(this);
+            OnLoadSceneGroup += StartLoadingSceneGroup;
+        }
+        
+        private void StartLoadingSceneGroup(SceneGroup group)
+        {
+            StartCoroutine(LoadSceneGroup(group));
         }
 
         /// <summary>
         /// Starts the scene loading process.
         /// </summary>
-        private async void Start()
+        private void Start()
         {
-            await LoadSceneGroupIndex(1)!;
-            await Task.Delay(2000);
+            StartCoroutine(LoadSceneGroupIndex(1));
         }
 
         /// <summary>
@@ -111,7 +122,7 @@ namespace SceneManagement
         /// Loads the scene group at the specified index.
         /// </summary>
         /// <param name="index">The index of the scene group to load.</param>
-        public async Task LoadSceneGroupIndex(int index)
+        public IEnumerator LoadSceneGroupIndex(int index)
         {
             if (loadingBar) loadingBar.fillAmount = 0f;
             targetProgress = 1f;
@@ -119,17 +130,40 @@ namespace SceneManagement
             if (index < 0 || index >= SceneGroups.Length)
             {
                 Debug.LogError($"Invalid SceneGroup index: {index}");
-                return;
+                yield break;
             }
 
-            await LoadSceneGroup(SceneGroups[index]);
+            yield return LoadSceneGroup(SceneGroups[index]);
         }
 
         /// <summary>
         /// Loads the specified scene group.
         /// </summary>
         /// <param name="group">The scene group to load.</param>
-        public async Task LoadSceneGroup(SceneGroup group)
+        private IEnumerator LoadSceneGroup(SceneGroup group)
+        {
+            yield return LoadSceneGroup(group, null);
+            // _activeSceneGroup = group;
+            // LoadingProgress progress = new LoadingProgress();
+            // progress.OnProgress += target => targetProgress = Mathf.Max(target, targetProgress);
+            //
+            // // Check if there is a UI Scene to load, otherwise insert default UI Scene
+            // if (string.IsNullOrWhiteSpace(group.FindSceneNameByType(SceneType.UserInterface)))
+            // {
+            //     var uiScene = new SceneData()
+            //     {
+            //         Reference = defaultUIScene,
+            //         SceneType = SceneType.UserInterface
+            //     };
+            //     group.Scenes.Add(uiScene);
+            // }
+            //
+            // await EnableLoadingCanvas();
+            // await SceneGroupManager.LoadScenes(group, progress);
+            // await EnableLoadingCanvas(false);
+        }
+        
+        private IEnumerator LoadSceneGroup(SceneGroup group, Action onComplete)
         {
             _activeSceneGroup = group;
             LoadingProgress progress = new LoadingProgress();
@@ -145,17 +179,18 @@ namespace SceneManagement
                 };
                 group.Scenes.Add(uiScene);
             }
-
-            await EnableLoadingCanvas();
-            await SceneGroupManager.LoadScenes(group, progress);
-            await EnableLoadingCanvas(false);
+            
+            yield return EnableLoadingCanvas();
+            yield return SceneGroupManager.LoadScenes(group, progress);
+            yield return EnableLoadingCanvas(false);
+            onComplete?.Invoke();
         }
 
         /// <summary>
         /// Enables or disables the loading canvas.
         /// </summary>
         /// <param name="enable">If set to <c>true</c>, enables the loading canvas.</param>
-        private async Task EnableLoadingCanvas(bool enable = true)
+        private IEnumerator EnableLoadingCanvas(bool enable = true)
         {
             isLoading = enable;
             if (loadingCanvas) loadingCanvas.gameObject.SetActive(enable);
@@ -174,7 +209,7 @@ namespace SceneManagement
             while (uiTransition != null && UIManager.Instance.IsTransitioning && timeout++ < 100)
             {
                 // Wait for the transition to complete
-                await Task.Delay(100);
+                yield return new WaitForSeconds(0.5f);
             }
 
             if (loadingCamera)
@@ -188,10 +223,10 @@ namespace SceneManagement
         /// <summary>
         /// Reloads the currently active scene group.
         /// </summary>
-        public async void ReloadActiveSceneGroup()
+        public IEnumerator ReloadActiveSceneGroup()
         {
-            if (!_activeSceneGroup) return;
-            await LoadSceneGroup(_activeSceneGroup);
+            if (!_activeSceneGroup) yield break;
+            yield return LoadSceneGroup(_activeSceneGroup);
         }
 
         private SceneGroup DetermineNextNode()
@@ -216,7 +251,7 @@ namespace SceneManagement
         /// <summary>
         /// Ends the current node.
         /// </summary>
-        public async Task EndNode()
+        public void EndNode()
         {
             // Determine the next node
             // TODO: Currently just reloading the active scene group
@@ -239,7 +274,7 @@ namespace SceneManagement
             }
             
             // Load the next node
-            await LoadSceneGroup(_nextSceneGroup);
+            StartCoroutine(LoadSceneGroup(_nextSceneGroup));
         }
 
         private IEnumerator TransitionDelay(Action onComplete)
