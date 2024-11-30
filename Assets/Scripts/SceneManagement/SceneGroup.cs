@@ -40,6 +40,11 @@ namespace SceneManagement
         public LightingSettings LightingSettings;
 
         /// <summary>
+        /// Audio event to invoke on scene load
+        /// </summary>
+        public List<Events.AudioEvent> AudioEventsOnLoaded;
+
+        /// <summary>
         /// Finds the name of a scene by its type.
         /// </summary>
         /// <param name="sceneType">The type of the scene.</param>

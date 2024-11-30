@@ -30,3 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05bbfab1ec6709c409004bc6d0393a9a, type: 2}
   - {fileID: 11400000, guid: 20f2b523663d2334999638f24eefb979, type: 2}
   LightingSettings: {fileID: 11400000, guid: 7dc6f2bfbeecd5e449832146ad97f6d0, type: 2}
+  AmbientAudio: {fileID: 11400000, guid: b6113b7948712d64f86be8549ddb5b19, type: 2}

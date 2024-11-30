@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Node_Apoc_Scene
   m_EditorClassIdentifier: 
   GroupName: Node_Apocalypse
+  IgnorePills: 0
   Scenes:
   - Reference:
       asset: {fileID: 102900000, guid: 502bc9251e1c786489a0a6e9f901bc07, type: 3}
@@ -37,3 +38,4 @@ MonoBehaviour:
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
   LightingSettings: {fileID: 0}
+  AmbientAudio: {fileID: 11400000, guid: 1ea54a963a4ee1140bfd95e541446290, type: 2}

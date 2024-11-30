@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Event_Audio_CrushBox
   m_EditorClassIdentifier: 
   Conditions: []
-  clip: {fileID: 8300000, guid: 3df75e99723b20e46a53a44672c98279, type: 3}
-  playAtPosition: 1
+  Clip: {fileID: 8300000, guid: 3df75e99723b20e46a53a44672c98279, type: 3}
+  Volume: 1
+  _audioEventType: 1

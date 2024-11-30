@@ -27,3 +27,4 @@ MonoBehaviour:
     SubSceneType: 0
   TransitionTargets: []
   LightingSettings: {fileID: 11400000, guid: e97686adc0c7c2c43b31d62e52649cad, type: 2}
+  AmbientAudio: {fileID: 11400000, guid: 039976ec4dbcc0940aa79c962715ebeb, type: 2}
