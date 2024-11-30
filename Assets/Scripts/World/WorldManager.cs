@@ -204,7 +204,6 @@ namespace World
         }
         private void StartDay()
         {
-            _playerState.PrevDayMoney = _playerState.Money;
             _playerState.JobCompleted = false;
             _playerState.HasConsumedPills = false;
         }
@@ -215,6 +214,7 @@ namespace World
         public void PayPlayer()
         {
             _playerState.JobCompleted = true;
+            _playerState.PrevDayMoney = _playerState.Money;
             UpdatePlayerMoney(_playerState.Money + 100f);
         }
 
