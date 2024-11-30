@@ -551,6 +551,7 @@ MonoBehaviour:
   interactionLabel: Take Pills
   InteractionEvents:
   - {fileID: 11400000, guid: 06d85f7d77c25dd47b75f4edf3dc6ec6, type: 2}
+  ObservationEvents: []
 --- !u!1001 &124928450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,6 +843,7 @@ MonoBehaviour:
       m_Calls: []
   interactionLabel: Interact
   InteractionEvents: []
+  ObservationEvents: []
 --- !u!1001 &190861451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1694,6 +1696,7 @@ Transform:
   - {fileID: 2066944812}
   - {fileID: 1532668320}
   - {fileID: 213805601}
+  - {fileID: 618697931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &409116943
@@ -2072,7 +2075,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 395450227}
     m_Modifications:
     - target: {fileID: 1781828362270766490, guid: 32fd49df05e0d8045ab4e379b211f9e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2123,6 +2126,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32fd49df05e0d8045ab4e379b211f9e9, type: 3}
+--- !u!4 &618697931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1781828362270766490, guid: 32fd49df05e0d8045ab4e379b211f9e9, type: 3}
+  m_PrefabInstance: {fileID: 618697930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &622221224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2949,6 +2957,7 @@ MonoBehaviour:
       m_Calls: []
   interactionLabel: Interact
   InteractionEvents: []
+  ObservationEvents: []
 --- !u!1001 &1101456256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3914,6 +3923,7 @@ MonoBehaviour:
       m_Calls: []
   interactionLabel: Interact
   InteractionEvents: []
+  ObservationEvents: []
 --- !u!1001 &1342253064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4049,6 +4059,7 @@ MonoBehaviour:
       m_Calls: []
   interactionLabel: Interact
   InteractionEvents: []
+  ObservationEvents: []
 --- !u!1001 &1424386713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4183,6 +4194,7 @@ MonoBehaviour:
       m_Calls: []
   interactionLabel: Interact
   InteractionEvents: []
+  ObservationEvents: []
 --- !u!1001 &1455278749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5724,6 +5736,7 @@ MonoBehaviour:
       m_Calls: []
   interactionLabel: Interact
   InteractionEvents: []
+  ObservationEvents: []
 --- !u!1001 &1952672400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6384,4 +6397,3 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 395450227}
-  - {fileID: 618697930}

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb002c8102a34d52a4f5893c24b98cff, type: 3}
   m_Name: Event_Lighting_UndergroundCave
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 9cce5c411a76a5b45b5a6a70cc4fe138, type: 2}
+  Conditions: []
+  settings: {fileID: 11400000, guid: 3b6669dc837a1c240a5756f60d8c976e, type: 2}

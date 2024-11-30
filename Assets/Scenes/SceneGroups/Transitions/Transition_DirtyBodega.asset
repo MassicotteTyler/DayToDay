@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneGroup: {fileID: 11400000, guid: 6154fda6ca8f8574fba0abdfcc4ffb6d, type: 2}
   Conditions:
-  - Expression: World.Day > 1 && Player.hasConsumedPills == false
+  - Expression: World.Day > 1 && Player.HasConsumedPills == false
