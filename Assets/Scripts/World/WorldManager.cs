@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Bodega;
 using Events;
+using SceneManagement;
 using UI;
 using UnityEngine;
 using Utility;
@@ -72,6 +74,11 @@ namespace World
         /// If the player has completed their job.
         /// </summary>
         public bool JobCompleted { get; set; } = false;
+        
+        /// <summary>
+        /// The visited nodes.
+        /// </summary>
+        public Dictionary<string, SceneGroup> visitedNodes = new Dictionary<string, SceneGroup>();
     }
     /// <summary>
     /// State manager for the things outside of the nodes.
@@ -163,6 +170,8 @@ namespace World
             
             // Start the day when the node transition ends.
             UIManager.Instance.OnNodeTransitionEnd += StartDay;
+            
+            SceneGroupManager.OnSceneGroupLoaded += HandleNodeLoaded;
         }
         
         private void OnDestroy()
@@ -172,6 +181,8 @@ namespace World
             EndNodeEvent.OnEndNode -= HandleNodeEnd;
             BodegaManager.OnJobCompleted -= PayPlayer;
             UIManager.Instance.OnNodeTransitionEnd -= StartDay;
+            
+            SceneGroupManager.OnSceneGroupLoaded -= HandleNodeLoaded;
         }
         
         /// <summary>
@@ -183,6 +194,14 @@ namespace World
             _playerState.HasConsumedPillsPrevDay = _playerState.HasConsumedPills;
         }
 
+        private void HandleNodeLoaded(SceneGroup sceneGroup)
+        {
+            _worldState.Node = sceneGroup.name;
+            if (_playerState.visitedNodes.TryAdd(sceneGroup.name, sceneGroup))
+            {
+                Debug.Log($"Visited {sceneGroup.name}");
+            }
+        }
         private void StartDay()
         {
             _playerState.PrevDayMoney = _playerState.Money;
