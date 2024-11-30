@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33297496a3a4ac58ba85422bea44ea1, type: 3}
   m_Name: Transition_DirtyBodega
   m_EditorClassIdentifier: 
-  SceneGroup: {fileID: 11400000, guid: 6154fda6ca8f8574fba0abdfcc4ffb6d, type: 2}
+  SceneGroup: {fileID: 11400000, guid: f001e7a29702d3f40a76643041d2ad51, type: 2}
   Conditions:
   - Expression: World.Day > 1 && Player.HasConsumedPills == false
