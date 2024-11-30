@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036e267c02d2426d975b3ede36f0ed11, type: 3}
   m_Name: Event_BodegaItem
   m_EditorClassIdentifier: 
+  Conditions: []
+  ItemType: 0

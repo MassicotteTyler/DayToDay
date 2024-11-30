@@ -1,4 +1,5 @@
 ﻿using System;
+using Bodega;
 using Events;
 using UI;
 using UnityEngine;
@@ -66,6 +67,11 @@ namespace World
         /// If the player has seen the green man.
         /// </summary
         public bool HasSeenGreenMan { get; set; } = false;
+        
+        /// <summary>
+        /// If the player has completed their job.
+        /// </summary>
+        public bool JobCompleted { get; set; } = false;
     }
     /// <summary>
     /// State manager for the things outside of the nodes.
@@ -153,8 +159,10 @@ namespace World
             ConsumedPillsEvent.onPillsConsumed += OnPillsConsumed;
             SeenGreenManEvent.seenGreenMan += OnSeenGreenMan;
             EndNodeEvent.OnEndNode += HandleNodeEnd;
+            BodegaManager.OnJobCompleted += PayPlayer;
             
-            UIManager.Instance.OnNodeTransitionEnd += PayPlayer;
+            // Start the day when the node transition ends.
+            UIManager.instance.OnNodeTransitionEnd += StartDay;
         }
         
         private void OnDestroy()
@@ -162,6 +170,8 @@ namespace World
             ConsumedPillsEvent.onPillsConsumed -= OnPillsConsumed;
             SeenGreenManEvent.seenGreenMan -= OnSeenGreenMan;
             EndNodeEvent.OnEndNode -= HandleNodeEnd;
+            BodegaManager.OnJobCompleted -= PayPlayer;
+            UIManager.instance.OnNodeTransitionEnd -= StartDay;
         }
         
         /// <summary>
@@ -172,7 +182,12 @@ namespace World
             _worldState.Day++;
             _playerState.HasConsumedPillsPrevDay = _playerState.HasConsumedPills;
             _playerState.HasConsumedPills = false;
-            PayPlayer();
+        }
+
+        private void StartDay()
+        {
+            _playerState.PrevDayMoney = _playerState.Money;
+            _playerState.JobCompleted = false;
         }
 
         /// <summary>
@@ -180,14 +195,8 @@ namespace World
         /// </summary>
         public void PayPlayer()
         {
-            // TODO: this should be an event that listens for the EndNode event
-            
-            if (_playerState.ItemsShelved > 2)
-            {
-                _playerState.PrevDayMoney = _playerState.Money;
-                UpdatePlayerMoney(_playerState.Money + 100f);
-            }
-            _playerState.ItemsShelved = 0;
+            _playerState.JobCompleted = true;
+            UpdatePlayerMoney(_playerState.Money + 100f);
         }
 
         /// <summary>
