@@ -162,7 +162,7 @@ namespace World
             BodegaManager.OnJobCompleted += PayPlayer;
             
             // Start the day when the node transition ends.
-            UIManager.instance.OnNodeTransitionEnd += StartDay;
+            UIManager.Instance.OnNodeTransitionEnd += StartDay;
         }
         
         private void OnDestroy()
@@ -171,7 +171,7 @@ namespace World
             SeenGreenManEvent.seenGreenMan -= OnSeenGreenMan;
             EndNodeEvent.OnEndNode -= HandleNodeEnd;
             BodegaManager.OnJobCompleted -= PayPlayer;
-            UIManager.instance.OnNodeTransitionEnd -= StartDay;
+            UIManager.Instance.OnNodeTransitionEnd -= StartDay;
         }
         
         /// <summary>
@@ -181,13 +181,13 @@ namespace World
         {
             _worldState.Day++;
             _playerState.HasConsumedPillsPrevDay = _playerState.HasConsumedPills;
-            _playerState.HasConsumedPills = false;
         }
 
         private void StartDay()
         {
             _playerState.PrevDayMoney = _playerState.Money;
             _playerState.JobCompleted = false;
+            _playerState.HasConsumedPills = false;
         }
 
         /// <summary>

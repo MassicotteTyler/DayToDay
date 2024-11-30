@@ -25,6 +25,7 @@ namespace UI
             _label = GetComponent<TextMeshProUGUI>();
             Bodega.BodegaManager.OnJobAssigned += HandleJobAssigned;
             Bodega.BodegaManager.OnJobCompleted += HandleJobCompleted;
+            HandleJobAssigned(Bodega.BodegaManager.Instance.currentJob);
         }
         
         /// <summary>
@@ -34,6 +35,12 @@ namespace UI
         private void HandleJobAssigned(BodegaJob job)
         {
             _currentJob = job;
+            if (!_currentJob)
+            {
+                ClearLabel();
+                return;
+            }
+            
             _currentJob.OnJobStatusChanged += UpdateLabel;
             UpdateLabel();
         }

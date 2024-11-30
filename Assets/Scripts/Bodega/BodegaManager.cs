@@ -32,6 +32,7 @@ namespace Bodega
         /// The tag for bodega items.
         /// </summary>
         public static string BodegaItemTag = "BodegaItem";
+        public static string BodegaTrashTag = "BodegaTrash";
         
         /// <summary>
         /// Action invoked when a job is assigned.
@@ -46,7 +47,7 @@ namespace Bodega
         /// <summary>
         /// The current job being worked on.
         /// </summary>
-        private BodegaJob currentJob;
+        public BodegaJob currentJob { get; private set; } = null;
 
         /// <summary>
         /// The list of completed jobs.
@@ -58,7 +59,7 @@ namespace Bodega
            AssignNewJob();
            
            OnJobCompleted += HandleJobCompleted;
-           UIManager.instance.OnNodeTransitionEnd += AssignNewJob;
+           UIManager.Instance.OnNodeTransitionEnd += AssignNewJob;
         }
 
         private void OnDestroy()
@@ -103,7 +104,7 @@ namespace Bodega
             foreach (var job in availableJobs.Where(j => j != currentJob))
             {
                 job.CleanupJob();
-                job.gameObject.SetActive(false);
+                job.enabled = false;
             }
         }
     }

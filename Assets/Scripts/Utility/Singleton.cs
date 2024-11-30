@@ -61,7 +61,7 @@ namespace Utility
         /// <summary>
         /// The singleton instance.
         /// </summary>
-        protected static T instance;
+        private static T instance;
 
         /// <summary>
         /// Gets the singleton instance, creating it if necessary.
