@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Event_Audio_Ambient_BaseNode_Indoor
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 66d04335c862ddf48ac163eb21d1f9e9, type: 3}
+  Clip: {fileID: 8300000, guid: 061b3b3632abbdc49b1609639a6f4d1c, type: 3}
   Volume: 0.8
   _audioEventType: 2

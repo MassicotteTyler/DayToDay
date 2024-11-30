@@ -105,7 +105,12 @@ namespace SceneLighting
         /// <param name="sceneGroup">The new <see cref="SceneGroup"/></param>
         private void HandleSceneGroupChange(SceneGroup sceneGroup)
         {
-            ChangeLightSettings(sceneGroup.LightingSettings);
+            if (!sceneGroup || sceneGroup.LightingEventsOnLoaded == null) return;
+
+            foreach (GameEvent gameEvent in sceneGroup.LightingEventsOnLoaded)
+            {
+                gameEvent?.Invoke();
+            }
         }
 
         /// <summary>

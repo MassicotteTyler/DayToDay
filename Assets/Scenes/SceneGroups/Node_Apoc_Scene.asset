@@ -38,4 +38,5 @@ MonoBehaviour:
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
   LightingSettings: {fileID: 0}
-  AmbientAudio: {fileID: 11400000, guid: 1ea54a963a4ee1140bfd95e541446290, type: 2}
+  AudioEventsOnLoaded:
+  - {fileID: 11400000, guid: f923db4a777f38048bb19782b4cc24c4, type: 2}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Event_Audio_DoorLock
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 0}
+  Clip: {fileID: 8300000, guid: 6aa1d125dcf16db4195704994f9374c0, type: 3}
   Volume: 1
-  _audioEventType: 0
+  _audioEventType: 1

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Conditions: []
   Clip: {fileID: 8300000, guid: a61cf4212aab69a4fa3b405a8b48231d, type: 3}
-  Volume: 1
+  Volume: 0.6
   _audioEventType: 0

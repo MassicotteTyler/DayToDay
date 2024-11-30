@@ -38,6 +38,10 @@ namespace SceneManagement
         /// The lighting settings for the scene group.
         /// </summary>
         public LightingSettings LightingSettings;
+        /// <summary>
+        /// Lighting events to be called on scene load
+        /// </summary>
+        public List<Events.GameEvent> LightingEventsOnLoaded;
 
         /// <summary>
         /// Audio event to invoke on scene load

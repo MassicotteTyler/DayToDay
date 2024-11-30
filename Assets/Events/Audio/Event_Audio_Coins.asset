@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Event_Audio_Coins
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 0}
+  Clip: {fileID: 8300000, guid: 1c9cb4d7021412540969de70e4d0d07f, type: 3}
   Volume: 1
   _audioEventType: 0

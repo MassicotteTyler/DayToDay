@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Event_Audio_DogSnarling
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 0}
+  Clip: {fileID: 8300000, guid: 91295b4c6b4405f469e6df92588b013d, type: 3}
   Volume: 1
-  _audioEventType: 0
+  _audioEventType: 1
