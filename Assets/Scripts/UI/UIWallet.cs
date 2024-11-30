@@ -22,6 +22,11 @@ namespace UI
             UpdateLabel(WorldManager.Instance.GetPlayerMoney());
         }
 
+        private void OnDestroy()
+        {
+            WorldManager.Instance.OnPlayerMoneyChanged -= UpdateLabel;
+        }
+
         /// <summary>
         /// Update the label text.
         /// </summary>

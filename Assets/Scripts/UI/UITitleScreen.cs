@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SceneManagement;
 using UI;
+using World;
 
 public class UITitleScreen : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class UITitleScreen : MonoBehaviour
     /// </summary>
     public void ButtonPress_Start()
     {
+        WorldManager.Instance?.ResetGameState();
         LoadSceneEvent?.Invoke();
     }
 

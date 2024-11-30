@@ -122,6 +122,17 @@ namespace World
             ++_playerState.ItemsShelved;
         }
 
+        /// <summary>
+        /// Resets WorldManager state
+        /// </summary>
+        public void ResetGameState()
+        {
+            _worldState = new WorldState();
+            _playerState = new PlayerState();
+
+            OnPlayerMoneyChanged?.Invoke(_playerState.Money);
+        }
+
         private void Awake()
         {
             ConsumedPillsEvent.onPillsConsumed += OnPillsConsumed;
@@ -129,7 +140,6 @@ namespace World
             
             UIManager.Instance.OnNodeTransitionEnd += PayPlayer;
         }
-
         
         private void OnDestroy()
         {
@@ -159,6 +169,7 @@ namespace World
             }
             _playerState.ItemsShelved = 0;
         }
+
         /// <summary>
         /// Event handler for when pills are consumed.
         /// </summary>
