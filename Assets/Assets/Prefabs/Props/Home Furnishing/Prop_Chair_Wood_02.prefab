@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1423605304357112397}
   - component: {fileID: 932078813598884403}
   - component: {fileID: 373335180455553940}
-  - component: {fileID: 3055852963454883408}
+  - component: {fileID: 2717095204623165387}
   m_Layer: 0
   m_Name: Prop_Chair_Wood_02
   m_TagString: Untagged
@@ -85,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3055852963454883408
-BoxCollider:
+--- !u!64 &2717095204623165387
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,6 +103,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0592726, y: 1.1075964, z: 2.3225746}
-  m_Center: {x: 0.0010860562, y: 0.12874943, z: 0.007387819}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1917390823207358124, guid: 56e5a968df7d0f140aa6b92a53709355, type: 3}
