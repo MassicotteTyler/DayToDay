@@ -21,6 +21,11 @@ namespace Audio
         /// A separate AudioSource for playing ambient audio. Allows for independent volume/settings control 
         /// </summary>
         private AudioSource _ambientAudioSource;
+        
+        /// <summary>
+        /// The <see cref="AudioListener"/> attached to this GameObject. Used when there is no player audio listener.
+        /// </summary>
+        private AudioListener _audioListener;
 
         private void Awake()
         {
@@ -32,6 +37,25 @@ namespace Audio
             AudioEvent.OnPlayAudioClipAtPositionEvent += PlaySoundAtPosition;
             AudioEvent.OnSetAmbientEvent += SetAmbientClip;
             SceneGroupManager.OnSceneGroupLoaded += HandleSceneGroupChange;
+            
+            _audioListener ??= gameObject.AddComponent<AudioListener>();
+            _audioListener.enabled = false;
+        }
+        
+        /// <summary>
+        /// Enable the default <see cref="_audioListener"/>
+        /// </summary>
+        /// <param name="state">The state to set the AudioListener</param>
+        public void EnableDefaultListener(bool state)
+        {
+            PlayAmbient(state);
+            if (!_audioListener) return;
+            _audioListener.enabled = state;
+        }
+
+        private void Start()
+        {
+            _audioListener.enabled = false;
         }
 
         private void OnDestroy()

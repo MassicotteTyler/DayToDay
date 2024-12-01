@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Component;
 using UI;
 using UnityEngine;
@@ -192,6 +193,16 @@ namespace Controller
             UIManager.Instance.OnExitUIMode += EnableInteraction;
         }
 
+        private void OnEnable()
+        {
+            AudioManager.Instance.EnableDefaultListener(false);
+        }
+
+        private void OnDisable()
+        {
+            AudioManager.Instance.EnableDefaultListener(true);
+        }
+
         private void OnDestroy()
         {
             UIManager.Instance.OnEnterUIMode -= DisableInteraction;
@@ -232,12 +243,6 @@ namespace Controller
             HandleMouseLook();
             CheckStep();
         }
-
-        private void OnDisable()
-        {
-            
-        }
-
 
         /// <summary>
         ///  <para>Handles the player input</para>
