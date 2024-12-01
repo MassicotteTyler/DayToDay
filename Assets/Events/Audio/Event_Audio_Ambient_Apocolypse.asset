@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_Ambient_Apocolypse
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 94dd6fcbd9067f94e9dc410f5e12ce74, type: 3}
-  Volume: 0.6
+  PossibleClips:
+  - {fileID: 8300000, guid: 94dd6fcbd9067f94e9dc410f5e12ce74, type: 3}
+  Volume: 0.5
   _audioEventType: 2

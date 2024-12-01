@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_Ambient_Whimsical
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 5e8ac4a32f39a1d4daf8257d4671cfbe, type: 3}
+  PossibleClips:
+  - {fileID: 8300000, guid: 5e8ac4a32f39a1d4daf8257d4671cfbe, type: 3}
   Volume: 0.4
   _audioEventType: 2

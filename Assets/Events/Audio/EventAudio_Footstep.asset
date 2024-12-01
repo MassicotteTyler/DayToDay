@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f76d7dc5ead469f9930af9d5cb2c9a0, type: 3}
+  m_Name: EventAudio_Footstep
+  m_EditorClassIdentifier: 
+  Conditions: []
+  PossibleClips:
+  - {fileID: 8300000, guid: 3141c555c9be07946adbd3f993277e6a, type: 3}
+  - {fileID: 8300000, guid: 8861246ea2c1f0947a385f80bce510c9, type: 3}
+  - {fileID: 8300000, guid: d42c95481ea7bc24f9f939a500e85671, type: 3}
+  - {fileID: 8300000, guid: 7acdc1253567742458c0bdeba8f4331d, type: 3}
+  - {fileID: 8300000, guid: 84c6356cb2501c54e848acc4e4c974a8, type: 3}
+  Volume: 0.4
+  _audioEventType: 1

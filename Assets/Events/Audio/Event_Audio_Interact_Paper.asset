@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_Interact_Paper
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 09cad77296c380d499e838aa272b4ac2, type: 3}
+  PossibleClips:
+  - {fileID: 8300000, guid: 09cad77296c380d499e838aa272b4ac2, type: 3}
   Volume: 1
   _audioEventType: 0

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f83e4d94c5ce94192021631c7fc3cf, type: 3}
   m_Name: Indoors_PurpleHaze
   m_EditorClassIdentifier: 
+  UseCustomShader: 1
+  Shader_Retro: {fileID: 0}
   Skybox_Material: {fileID: 2100000, guid: 6386d72f9836d494f8a5030f4e5b7ef3, type: 2}
   Ambient_Colour: {r: 0.13803846, g: 0.15789813, b: 0.20754719, a: 1}
   Ambient_Intensity_Indoor: 0

@@ -5,6 +5,7 @@ using Component;
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Events;
 
 namespace Controller
 {
@@ -155,6 +156,12 @@ namespace Controller
         [SerializeField] 
         private KeyCode sprintKey;
 
+        [Header("Audio")]
+        /// <summary>
+        /// Audio event for footsteps
+        /// </summary>
+        public AudioEvent FootStepAudioEvent;
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -260,6 +267,7 @@ namespace Controller
             if (!_stepping && _currentStepDistance >= stride)
             {
                 Step();
+                FootStepAudioEvent?.Invoke(gameObject);
             }
         }
 

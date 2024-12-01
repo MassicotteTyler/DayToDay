@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Event_Audio_DisableAmbient
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 0}
+  PossibleClips: []
   Volume: 1
   _audioEventType: 2
