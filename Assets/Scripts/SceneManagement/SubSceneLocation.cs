@@ -34,13 +34,24 @@ namespace SceneManagement
         {
             // Register the subscene with the scene manager
             _subSceneData = Bootstrapper.Instance.SceneLoader?.GetSubSceneData(subSceneType);
+            Invoke(nameof(TryToMoveSubScene), 0.1f);
         }
 
-        private void Update()
+        private void TryToMoveSubScene()
         {
-            if (_isLoaded || _subSceneData == null || !_subSceneData.Reference.LoadedScene.isLoaded) return;
-            MoveSubScene(_subSceneData);
+
+            
+            if (_isLoaded || _subSceneData == null || !_subSceneData.Reference.LoadedScene.isLoaded)
+            {
+                if (!_isLoaded)
+                {
+                    Invoke(nameof(TryToMoveSubScene), 0.1f);
+                    return;
+                }
+                return;
+            }
             _isLoaded = true;
+            MoveSubScene(_subSceneData);
         }
 
         /// <summary>
@@ -66,6 +77,9 @@ namespace SceneManagement
             }
             
             SceneLoader.OnSubSceneMoved?.Invoke(sceneData.Name);
+            
+            // TODO: Look into why this function runs twice
+            Destroy(gameObject);
         }
 
 #if UNITY_EDITOR
