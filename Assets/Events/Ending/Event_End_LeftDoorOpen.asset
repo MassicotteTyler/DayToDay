@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Conditions:
   - Expression: Player.ToggledFrontDoor == true && World.Day > 1
+  TransitionPeak: 1
   GameEndingName: Left The Door Open
   EndGameMessage: You left the door open and someone beat the **** out of you!
   Hint: Close them doors!
