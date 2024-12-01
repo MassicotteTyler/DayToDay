@@ -453,6 +453,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 395450227}
     m_Modifications:
+    - target: {fileID: 1034275963798888632, guid: bb413757e353804419070c26eda3212a, type: 3}
+      propertyPath: InteractionEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034275963798888632, guid: bb413757e353804419070c26eda3212a, type: 3}
+      propertyPath: InteractionEvents.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d3267b535a9b3134297384e8e7cee6a4, type: 2}
     - target: {fileID: 2298107970665794497, guid: bb413757e353804419070c26eda3212a, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.4242
@@ -2219,6 +2227,13 @@ PrefabInstance:
       propertyPath: InteractionEvents.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 02ac8673bbe5f3d4a80826a77d7dbf7c, type: 2}
+    - target: {fileID: 8617843649888477351, guid: 32fd49df05e0d8045ab4e379b211f9e9, type: 3}
+      propertyPath: noteText
+      value: 'EVERYTHING WILL BE OKAY
+
+
+        JUST TAKE YOUR PILLS'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using SceneManagement;
 using UI;
 using UnityEngine;
 using World;
@@ -21,6 +22,8 @@ namespace Props.Player
         {
            StartCoroutine(WaitForPlayerController());
            UIManager.Instance.OnNodeTransitionEnd += MovePlayerToSpawn;
+           // listen for Subscene move
+           SceneLoader.OnSubSceneMoved += HandleSubSceneMoved;
         }
 
         private void Update()
@@ -37,6 +40,15 @@ namespace Props.Player
         private void OnDestroy()
         {
             UIManager.Instance.OnNodeTransitionEnd -= MovePlayerToSpawn;
+            SceneLoader.OnSubSceneMoved -= HandleSubSceneMoved;
+        }
+        
+        private void HandleSubSceneMoved(string sceneName)
+        {
+            if (sceneName.Equals(gameObject.scene.name))
+            {
+                MovePlayerToSpawn();
+            }
         }
 
         /// <summary>

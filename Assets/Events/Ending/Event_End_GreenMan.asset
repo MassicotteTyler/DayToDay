@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Conditions:
   - Expression: Player.HasSeenGreenMan == true
+  TransitionPeak: 0.5
   GameEndingName: Taken in the Woods
-  EndGameMessage: You were taken in the woods
+  EndGameMessage: You've been consumed by nature
   Hint: Beware the green man

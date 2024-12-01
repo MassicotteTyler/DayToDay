@@ -1,5 +1,8 @@
 ﻿using System;
+using Audio;
+using Events;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Bodega
 {
@@ -19,6 +22,11 @@ namespace Bodega
         public Action OnJobStatusChanged;
         
         /// <summary>
+        /// The sound played when the player is paid.
+        /// </summary>
+        [SerializeField] private AudioEvent PaymentSoundEvent;
+        
+        /// <summary>
         /// Starts the job.
         /// </summary>
         public void StartJob()
@@ -32,6 +40,7 @@ namespace Bodega
        public void CompleteJob()
        {
            BodegaManager.OnJobCompleted?.Invoke();
+           PaymentSoundEvent?.Invoke();
            CleanupJob();
        } 
        
