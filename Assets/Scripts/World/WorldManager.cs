@@ -69,6 +69,11 @@ namespace World
         /// If the player has seen the green man.
         /// </summary
         public bool HasSeenGreenMan { get; set; } = false;
+
+        /// <summary>
+        /// If the player has toggled the front door.
+        /// </summary>
+        public bool ToggledFrontDoor { get; set; } = false;
         
         /// <summary>
         /// If the player has completed their job.
@@ -165,9 +170,10 @@ namespace World
         {
             ConsumedPillsEvent.onPillsConsumed += OnPillsConsumed;
             SeenGreenManEvent.seenGreenMan += OnSeenGreenMan;
+            FrontDoorToggledEvent.frontDoorToggled += OnToggledFrontDoor;
             EndNodeEvent.OnEndNode += HandleNodeEnd;
             BodegaManager.OnJobCompleted += PayPlayer;
-            
+
             // Start the day when the node transition ends.
             UIManager.Instance.OnNodeTransitionEnd += StartDay;
             
@@ -206,6 +212,7 @@ namespace World
         {
             _playerState.JobCompleted = false;
             _playerState.HasConsumedPills = false;
+            _playerState.ToggledFrontDoor = false;
         }
 
         /// <summary>
@@ -230,6 +237,12 @@ namespace World
         private void OnSeenGreenMan()
         {
             _playerState.HasSeenGreenMan = true;
+        }
+
+        private void OnToggledFrontDoor()
+        {
+            _playerState.ToggledFrontDoor = !_playerState.ToggledFrontDoor;
+            print(_playerState.ToggledFrontDoor);
         }
     }
 }
