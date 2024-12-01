@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f83e4d94c5ce94192021631c7fc3cf, type: 3}
+  m_Name: LightingSettings_Apocalypse
+  m_EditorClassIdentifier: 
+  UseCustomShader: 1
+  Shader_Retro: {fileID: 4800000, guid: 6a2db4ce2928d5d46b1b7742104be9eb, type: 3}
+  Skybox_Material: {fileID: 2100000, guid: 837a4c7a66249cc4b937b85ea1b24dc9, type: 2}
+  Ambient_Colour: {r: 0.3207547, g: 0.14070842, b: 0.15707625, a: 1}
+  Ambient_Intensity_Indoor: 0.8
+  Fog_Enabled: 1
+  Fog_Colour: {r: 0.2924528, g: 0.07035421, b: 0.07035421, a: 0.78431374}
+  Fog_Start: 0
+  Fog_End: 30
