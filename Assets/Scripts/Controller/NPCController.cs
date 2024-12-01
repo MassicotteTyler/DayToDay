@@ -7,7 +7,8 @@ public enum NPCMode
     Idle,
     Loop,
     Patrol,
-    PlayOnce
+    PlayOnce,
+    PatrolThenStop
 }
 
 [RequireComponent(typeof(CharacterController))]
@@ -95,6 +96,9 @@ public class NPCController : MonoBehaviour
                 break;
             case NPCMode.PlayOnce:
                 PlayOnce();
+                break;
+            case NPCMode.PatrolThenStop:
+                PatrolThenStop();
                 break;
             default:
                 //Idle
@@ -213,6 +217,17 @@ public class NPCController : MonoBehaviour
         _autoMoveRoutine = StartCoroutine(LoopRoutine());
     }
 
+    public void PatrolThenStop()
+    {
+        if (Waypoints == null || Waypoints.Count <= 0) return;
+        
+        ResetPosition();
+        
+        EnableModel(true);
+
+        _autoMoveRoutine = StartCoroutine(PatrolThenStopRoutine());
+    }
+
     /// <summary>
     /// Start the partol coroutine
     /// Makes NPC move move through the waypoints and then return in reverse order
@@ -232,6 +247,27 @@ public class NPCController : MonoBehaviour
         EnableModel(true);
 
         _autoMoveRoutine = StartCoroutine(PatrolRoutine());
+    }
+
+
+    IEnumerator PatrolThenStopRoutine()
+    {
+        int _currentWayPoint = 0; // Current waypoint index
+
+        while (_currentWayPoint < Waypoints.Count)
+        {
+            _destination = Waypoints[_currentWayPoint];
+
+            yield return _moveRoutine = StartCoroutine(MoveRoutine());
+
+            _currentWayPoint++;
+        }
+
+        if (_currentWayPoint >= Waypoints.Count)
+        {
+            NPCAnimator?.SetFloat("Blend_Move", 0.0f);
+            _autoMoveRoutine = null;
+        }
     }
 
     /// <summary>
