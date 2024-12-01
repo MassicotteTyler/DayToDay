@@ -109,6 +109,7 @@ MonoBehaviour:
   interactionLabel: Clear Trash
   InteractionEvents:
   - {fileID: 11400000, guid: da41ca39ac21f6440a7a072c1b18b068, type: 2}
+  - {fileID: 11400000, guid: 699ba90903ed1264d90370274230b055, type: 2}
   ObservationEvents: []
 --- !u!64 &7490234368890607657
 MeshCollider:

@@ -111,11 +111,11 @@ namespace Audio
 
             if (state && _ambientAudioSource.clip)
             {
-                _ambientAudioSource.Play();
+                _ambientAudioSource?.Play();
             }
             else
             {
-                _ambientAudioSource.Stop();
+                _ambientAudioSource?.Stop();
             }
         }
 
@@ -128,7 +128,7 @@ namespace Audio
             if (!audioClip) return;
 
             // Play the sound.
-            _audioSource.PlayOneShot(audioClip, volume);
+            _audioSource?.PlayOneShot(audioClip, volume);
         }
         
         /// <summary>

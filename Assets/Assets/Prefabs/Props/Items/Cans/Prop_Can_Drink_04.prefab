@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4689695523751021407}
   - component: {fileID: 2169271766183726004}
   - component: {fileID: 8970775627615475076}
+  - component: {fileID: 3117577927509439669}
   m_Layer: 0
   m_Name: Prop_Can_Drink_04
   m_TagString: Untagged
@@ -83,3 +84,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3117577927509439669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56715528584136565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e347a40eb645f9b4388562ea21fe51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onObserve:
+    m_PersistentCalls:
+      m_Calls: []
+  onStopObserving:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionLabel: Shelve
+  InteractionEvents:
+  - {fileID: 11400000, guid: 9ef6af7e3e2099341af92fe8904e5928, type: 2}
+  - {fileID: 11400000, guid: 699ba90903ed1264d90370274230b055, type: 2}
+  ObservationEvents: []
