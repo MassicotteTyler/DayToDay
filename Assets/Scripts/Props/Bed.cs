@@ -66,6 +66,7 @@ namespace Props
         {
             _interactableComponent = GetComponent<InteractableComponent>();
             _interactableComponent.onInteract?.AddListener(Interact);
+            _interactableComponent.onObserve?.AddListener(OnObserve);
 
             _camera = GetComponentInChildren<Camera>();
             _sleepPosition = sleepTransform.position;
@@ -100,6 +101,18 @@ namespace Props
                 _onCameraMoveComplete = null;
                 onSleepEvent?.Invoke();
             };
+        }
+        
+        private void OnDestroy()
+        {
+            _interactableComponent.onInteract?.RemoveListener(Interact);
+            _interactableComponent.onObserve?.RemoveListener(OnObserve);
+        }
+        
+        private void OnObserve(GameObject observer)
+        {
+            _sleepPosition = sleepTransform.position;
+            _sleepRotation = sleepTransform.rotation;
         }
 
         /// <summary>
