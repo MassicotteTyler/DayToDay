@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8437203769383053562}
   - component: {fileID: 5816728330632762115}
   - component: {fileID: 4226652054691921247}
-  - component: {fileID: 7490234368890607657}
+  - component: {fileID: 775366488274455721}
   m_Layer: 0
   m_Name: Bodega_Trash1
   m_TagString: BodegaTrash
@@ -111,8 +111,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da41ca39ac21f6440a7a072c1b18b068, type: 2}
   - {fileID: 11400000, guid: 699ba90903ed1264d90370274230b055, type: 2}
   ObservationEvents: []
---- !u!64 &7490234368890607657
-MeshCollider:
+--- !u!135 &775366488274455721
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,10 +126,9 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7585283174873622310, guid: 46840ceaa0742ad40811ba250f369aae, type: 3}
+  serializedVersion: 3
+  m_Radius: 1.3211817
+  m_Center: {x: 0.047254562, y: 0.093506835, z: 0.048650216}
