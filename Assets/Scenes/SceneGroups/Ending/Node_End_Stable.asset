@@ -23,4 +23,5 @@ MonoBehaviour:
   TransitionTargets: []
   LightingSettings: {fileID: 0}
   LightingEventsOnLoaded: []
-  AudioEventsOnLoaded: []
+  AudioEventsOnLoaded:
+  - {fileID: 11400000, guid: 9d4e46375c3b3984f90867e5f76b4b80, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event_End_GreenMan
   m_EditorClassIdentifier: 
   Conditions:
-  - Expression: 
+  - Expression: Player.HasSeenGreenMan == true
   GameEndingName: Taken in the Woods
   EndGameMessage: You were taken in the woods
   Hint: Beware the green man

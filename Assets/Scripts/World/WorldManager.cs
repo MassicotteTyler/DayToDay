@@ -41,9 +41,14 @@ namespace World
         public float Money { get; set; } = 0;
 
         ///<summary>
-        /// If the player was paid the previous day.
+        /// If the player worked today.
         /// </summary>
-        public float PrevDayMoney { get; set; } = 0f;
+        public bool PlayerWorkedToday { get; set; } = false;
+
+        ///<summary>
+        /// If the player worked the previous day.
+        /// </summary>
+        public bool WorkedPreviousDay { get; set; } = false;
 
         /// <summary>
         /// The number of items shelved by the player.
@@ -164,6 +169,7 @@ namespace World
             _playerState = new PlayerState();
 
             OnPlayerMoneyChanged?.Invoke(_playerState.Money);
+            _playerState.WorkedPreviousDay = false;
         }
 
         private void Awake()
@@ -198,6 +204,7 @@ namespace World
         {
             _worldState.Day++;
             _playerState.HasConsumedPillsPrevDay = _playerState.HasConsumedPills;
+            _playerState.WorkedPreviousDay = _playerState.PlayerWorkedToday;
         }
 
         private void HandleNodeLoaded(SceneGroup sceneGroup)
@@ -213,6 +220,7 @@ namespace World
             _playerState.JobCompleted = false;
             _playerState.HasConsumedPills = false;
             _playerState.ToggledFrontDoor = false;
+            _playerState.PlayerWorkedToday = false;
         }
 
         /// <summary>
@@ -221,8 +229,8 @@ namespace World
         public void PayPlayer()
         {
             _playerState.JobCompleted = true;
-            _playerState.PrevDayMoney = _playerState.Money;
             UpdatePlayerMoney(_playerState.Money + 100f);
+            _playerState.PlayerWorkedToday = true;
         }
 
         /// <summary>
@@ -242,7 +250,6 @@ namespace World
         private void OnToggledFrontDoor()
         {
             _playerState.ToggledFrontDoor = !_playerState.ToggledFrontDoor;
-            print(_playerState.ToggledFrontDoor);
         }
     }
 }

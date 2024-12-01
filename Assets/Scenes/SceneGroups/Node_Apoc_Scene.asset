@@ -26,8 +26,8 @@ MonoBehaviour:
     SceneType: 1
     SubSceneType: 1
   - Reference:
-      asset: {fileID: 102900000, guid: 1d3c499d12c5bf241a26f38535b7a353, type: 3}
-      guid: 1d3c499d12c5bf241a26f38535b7a353
+      asset: {fileID: 102900000, guid: 551edea9770062f43a1a69dad0ed06f3, type: 3}
+      guid: 551edea9770062f43a1a69dad0ed06f3
     SceneType: 1
     SubSceneType: 2
   - Reference:
@@ -38,5 +38,6 @@ MonoBehaviour:
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
   LightingSettings: {fileID: 0}
+  LightingEventsOnLoaded: []
   AudioEventsOnLoaded:
   - {fileID: 11400000, guid: f923db4a777f38048bb19782b4cc24c4, type: 2}
