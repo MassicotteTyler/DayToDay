@@ -24,12 +24,12 @@ namespace Controller
         /// <summary>
         ///   <para>Walking speed of the player</para>
         /// </summary>
-        [Header("Movement")] [SerializeField] private float walkSpeed = 2.0f;
+        [Header("Movement")] [SerializeField] private float walkSpeed = 4.0f;
 
         ///<summary>
         /// <para>Running speed of the player.</para>
         /// </summary>
-        [Header("Movement")] [SerializeField] private float runSpeed = 5.5f;
+        [Header("Movement")] [SerializeField] private float runSpeed = 8.0f;
         
         /// <summary>
         ///  <para>Standing height of the player</para>
@@ -63,39 +63,40 @@ namespace Controller
         [SerializeField] private float groundCheckDistance = 0.4f;
         
         /// <summary>
-        /// The distance between steps
+        /// The distance between walking steps
         /// </summary>
-        [SerializeField] private float stride = 4f;
+        [SerializeField] private float stride_Walk = 1.6f;
+
+        /// <summary>
+        /// The distance between running steps
+        /// </summary>
+        [SerializeField] private float stride_Run = 2.0f;
         
         /// <summary>
         /// The current step distance the player has taken
         /// </summary>
-        private float _currentStepDistance = 0f;
+        private float _currentStepTime = 0f;
+
+        /// <summary>
+        /// The time between headbobs. calculated based on speed and stride length
+        /// </summary>
+        private float _timeBetweenSteps => 1/(_currentSpeed / (CheckSprint() ? stride_Run : stride_Walk));
         
         /// <summary>
         /// How much the camera should bob
         /// </summary>
         [Header("HeadBob")]
-        [SerializeField] private float headBobIntensity = .05f;
-        /// <summary>
-        /// The duration of the head bob
-        /// </summary>
-        [SerializeField] private float headBobDuration = 2.63f;
-        
-        /// <summary>
-        /// The duration of the head bob while sprinting
-        /// </summary>
-        [SerializeField] private float headBobSprintDuration = 1.35f;
+        [SerializeField] private float headBobIntensity = .1f;
 
         /// <summary>
         /// How much the camera should bob while sprinting
         /// </summary>
-        [SerializeField] private float headBobSprintIntensity = 0.095f;
-        
+        [SerializeField] private float headBobSprintIntensity = 0.15f;
+
         /// <summary>
-        /// If the player is currently stepping
+        /// The head bob routine
         /// </summary>
-        private bool _stepping;
+        private Coroutine _headBobRoutine;
         
         /// <summary>
         /// The initial Y position of the camera
@@ -163,6 +164,11 @@ namespace Controller
         /// </summary>
         public AudioEvent FootStepAudioEvent;
 
+        /// <summary>
+        /// Audio event for footsteps
+        /// </summary>
+        public Transform FootStepAudioPosition;
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -180,8 +186,8 @@ namespace Controller
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             
-            _currentStepDistance = 0f;
-            _stepping = false;
+            _currentStepTime = 0f;
+            _headBobRoutine = null;
             _initialYPos = _playerCamera.transform.localPosition.y;
             _rotationX = transform.localEulerAngles.x;
             _rotationY = transform.localEulerAngles.y;
@@ -264,15 +270,15 @@ namespace Controller
             var horizontalVelocity = new Vector3(_velocity.x, 0, _velocity.z).magnitude;
             if (!_characterController.isGrounded || horizontalVelocity <= 0)
             {
-                _currentStepDistance = 0f;
+                _currentStepTime = 0f;
                 return;
             }
-            
-            _currentStepDistance += _velocity.magnitude * Time.deltaTime;
-            if (!_stepping && _currentStepDistance >= stride)
+
+            _currentStepTime += Time.deltaTime;
+
+            if (_headBobRoutine == null && _currentStepTime >= _timeBetweenSteps)
             {
                 Step();
-                FootStepAudioEvent?.Invoke(gameObject);
             }
         }
 
@@ -291,21 +297,34 @@ namespace Controller
             }
         }
 
+        /// <summary>
+        /// Function that managed the Headbob coroutine
+        /// </summary>
         private void Step()
         {
-            if (_stepping) return;
-            _currentStepDistance = 0f;
-            StartCoroutine(HeadBob());
+            if (_headBobRoutine != null)
+            {
+                StopCoroutine(_headBobRoutine);
+                _headBobRoutine = null;
+            }
+
+            _currentStepTime = 0f;
+
+            FootStepAudioEvent?.Invoke(FootStepAudioPosition ? FootStepAudioPosition.gameObject : gameObject);
+            _headBobRoutine = StartCoroutine(HeadBob());
         }
 
+        /// <summary>
+        /// Headbob coroutine
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator HeadBob()
         {
             var time = 0f;
-            _stepping = true;
-            while (time < headBobDuration)
+            while (time < _timeBetweenSteps)
             {
-                time += Time.fixedDeltaTime;
-                var t = time / (CheckSprint() ? headBobSprintDuration : headBobDuration);
+                time += Time.deltaTime;
+                var t = time / _timeBetweenSteps;
                 var bobAmount = Mathf.Sin(t * Mathf.PI) * (CheckSprint() ? headBobSprintIntensity : headBobIntensity);
                 _playerCamera.transform.localPosition =  
                     new Vector3(
@@ -314,7 +333,8 @@ namespace Controller
                         _playerCamera.transform.localPosition.z);
                 yield return null;
             }
-            _stepping = false;
+
+            _headBobRoutine = null;
         }
 
         /// <summary>

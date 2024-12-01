@@ -15,5 +15,5 @@ MonoBehaviour:
   Conditions: []
   PossibleClips:
   - {fileID: 8300000, guid: 9335e7cb3392d5d4ebcd3ac8c24e855f, type: 3}
-  Volume: 0.6
+  Volume: 0.25
   _audioEventType: 0

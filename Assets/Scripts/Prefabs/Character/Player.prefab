@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &532685488483813514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3296688811531993095}
+  m_Layer: 0
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3296688811531993095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532685488483813514}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.073, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7881035827129633259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4829813729471910014
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +134,6 @@ GameObject:
   - component: {fileID: 7881035827129633259}
   - component: {fileID: 5784544776906834674}
   - component: {fileID: 3681688080359654229}
-  - component: {fileID: 2136431076991887850}
   - component: {fileID: 5472343393930847058}
   - component: {fileID: 1746067047229458414}
   - component: {fileID: 4525300152234574523}
@@ -129,6 +159,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7315755986920380538}
+  - {fileID: 3296688811531993095}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5784544776906834674
@@ -181,29 +212,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2136431076991887850
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8695404175069279114}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.35
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &5472343393930847058
 CharacterController:
   m_ObjectHideFlags: 0
@@ -242,8 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65bd4253b06d16459d521a18343d6ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2
-  runSpeed: 5.5
+  walkSpeed: 4
+  runSpeed: 7
   standingHeight: 2
   mouseSensitivity: 2
   maxLookAngle: 90
@@ -252,13 +260,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheckDistance: 0.4
-  stride: 4
-  headBobIntensity: 0.05
-  headBobDuration: 2.63
-  headBobSprintDuration: 1.45
-  headBobSprintIntensity: 0.0675
+  stride_Walk: 1.6
+  stride_Run: 2
+  headBobIntensity: 0.1
+  headBobSprintIntensity: 0.15
   sprintKey: 304
   FootStepAudioEvent: {fileID: 11400000, guid: 5de26200569b6c74d9ae85c58aa06e38, type: 2}
+  FootStepAudioPosition: {fileID: 3296688811531993095}
 --- !u!54 &4525300152234574523
 Rigidbody:
   m_ObjectHideFlags: 0
