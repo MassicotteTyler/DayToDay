@@ -15,6 +15,11 @@ namespace Events
         public static Action<EndGameEvent> OnGameEnd;
 
         /// <summary>
+        /// How long until the transition effect is at peak.
+        /// </summary>
+        public float TransitionPeak = 0.5f;
+
+        /// <summary>
         /// The name of the game ending.
         /// </summary>
         public string GameEndingName;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Events;
 using UnityEngine;
 
 namespace UI.Transition
@@ -36,16 +37,19 @@ namespace UI.Transition
            
            UIManager.Instance.OnNodeTransitionStart += TransitionStart;
            UIManager.Instance.OnNodeTransitionEnd += TransitionEnd;
-           
+           EndGameEvent.OnGameEnd += HandleEndGameEvent;
+
            if (_canvasRenderer.GetAlpha() > 0f)
                TransitionEnd();
         }
+
 
         private void OnDestroy()
         {
             UIManager.Instance.OnNodeTransitionStart -= TransitionStart;
             UIManager.Instance.OnNodeTransitionEnd -= TransitionEnd;
-            StopAllCoroutines();
+            EndGameEvent.OnGameEnd -= HandleEndGameEvent;
+                StopAllCoroutines();
         }
 
         /// <summary>
@@ -89,6 +93,10 @@ namespace UI.Transition
                 yield return null;
             }
             UIManager.Instance.TransitionEnd();
+        }
+        private void HandleEndGameEvent(EndGameEvent endGameEvent)
+        {
+            transitionPeak = endGameEvent.TransitionPeak;
         }
     }
 }
