@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using World;
 
 public enum NPCMode
 {
@@ -29,6 +30,11 @@ public class NPCController : MonoBehaviour
     /// </summary>
     [Tooltip("1.5 = matching animation")]
     public float MoveSpeed;
+    
+    /// <summary>
+    /// How much this NPC will move when shoved.
+    /// </summary>
+    [SerializeField] private float _shoveForce = 2.0f;
 
     /// <summary>
     /// Behaviour of the NPC on start
@@ -122,6 +128,21 @@ public class NPCController : MonoBehaviour
     public void SetDance(bool state)
     {
         NPCAnimator?.SetBool("Boogie", state);
+    }
+
+
+    /// <summary>
+    /// Get shoved by the player.
+    /// </summary>
+    public void Shove()
+    {
+        var pc = PlayerManager.Instance.PlayerController;
+        if (!pc) return;
+        
+        Vector3 dir = transform.position - pc.transform.position;
+        dir.y = 0.0f;
+        dir.Normalize();
+        CharacterController.Move(dir * _shoveForce);
     }
 
     /// <summary>

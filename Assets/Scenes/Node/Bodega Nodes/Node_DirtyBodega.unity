@@ -29887,6 +29887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JobDescription: Pickup trash
+  PaymentSoundEvent: {fileID: 11400000, guid: d4e70eb48704a8b4588c0fafc3b56298, type: 2}
   trashToClean: 3
 --- !u!1 &1820935792
 GameObject:

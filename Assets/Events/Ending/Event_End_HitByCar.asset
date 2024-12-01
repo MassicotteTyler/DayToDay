@@ -15,5 +15,5 @@ MonoBehaviour:
   Conditions: []
   TransitionPeak: 0.025
   GameEndingName: My Legs!
-  EndGameMessage: You got hit by a car! Hospitals are expensive.
-  Hint: Look both ways...
+  EndGameMessage: You got hit by a car! Too bad you didn't have medical insurance
+  Hint: Remember to look both ways...

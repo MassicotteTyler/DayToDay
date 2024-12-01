@@ -16,6 +16,6 @@ MonoBehaviour:
   - Expression: Player.JobCompleted == true
   TransitionPeak: 0.5
   GameEndingName: Dedicated Employee
-  EndGameMessage: The world is ending but and you still show up for your shift? Good
+  EndGameMessage: The world is ending and you still show up for your shift? Good
     thing there is no tomorrow
   Hint: Doesn't matter if the worlds ending, you have a job to do
