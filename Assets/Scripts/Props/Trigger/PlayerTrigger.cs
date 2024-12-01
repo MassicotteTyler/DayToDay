@@ -78,7 +78,7 @@ namespace Props.Trigger
         {
             foreach (var gameEvent in _eventsToTrigger)
             {
-                gameEvent.Invoke();
+                gameEvent?.Invoke();
             }
         }
 
