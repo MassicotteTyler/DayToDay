@@ -107,7 +107,9 @@ namespace Audio
         /// <param name="state">start or stop</param>
         public void PlayAmbient(bool state)
         {
-            if (state)
+            if (_ambientAudioSource == null) return;
+
+            if (state && _ambientAudioSource.clip)
             {
                 _ambientAudioSource.Play();
             }

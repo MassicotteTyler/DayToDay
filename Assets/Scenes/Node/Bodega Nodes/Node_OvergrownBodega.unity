@@ -8263,7 +8263,19 @@ MonoBehaviour:
   isLocked: 0
   onStateChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ac0906608c076eb4ca67cfe63cf04ce6, type: 2}
+        m_TargetAssemblyTypeName: Events.GameEvent, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 672639848}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onOpen:
     m_PersistentCalls:
       m_Calls: []
@@ -8926,7 +8938,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isOneTimeTrigger: 0
-  _eventsToTrigger: []
+  _eventsToTrigger:
+  - {fileID: 11400000, guid: b5d351e3eadf6774194402d7ab61a57f, type: 2}
 --- !u!65 &715505583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9214,7 +9227,19 @@ MonoBehaviour:
   isLocked: 0
   onStateChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 08210212ac1423c4793074f7829ca783, type: 2}
+        m_TargetAssemblyTypeName: Events.GameEvent, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 765842200}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onOpen:
     m_PersistentCalls:
       m_Calls: []
