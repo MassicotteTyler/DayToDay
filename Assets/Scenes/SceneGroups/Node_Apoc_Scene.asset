@@ -38,6 +38,8 @@ MonoBehaviour:
   TransitionTargets:
   - {fileID: 11400000, guid: 052758b01c18d95419d27ff664127d21, type: 2}
   LightingSettings: {fileID: 0}
-  LightingEventsOnLoaded: []
+  LightingEventsOnLoaded:
+  - {fileID: 11400000, guid: 678d1d8ecb8aac0468e71e018301c41a, type: 2}
+  - {fileID: 11400000, guid: 12a6eba04e889bc40b9a881e63e7b795, type: 2}
   AudioEventsOnLoaded:
   - {fileID: 11400000, guid: f923db4a777f38048bb19782b4cc24c4, type: 2}

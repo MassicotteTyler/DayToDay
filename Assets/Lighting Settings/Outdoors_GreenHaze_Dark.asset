@@ -15,9 +15,9 @@ MonoBehaviour:
   UseCustomShader: 1
   Shader_Retro: {fileID: 4800000, guid: 6a2db4ce2928d5d46b1b7742104be9eb, type: 3}
   Skybox_Material: {fileID: 2100000, guid: 5721b6fd7a1466443a9c8c42261605b1, type: 2}
-  Ambient_Colour: {r: 0.15441436, g: 0.18867922, b: 0.13972943, a: 1}
+  Ambient_Colour: {r: 0.19329612, g: 0.23584908, b: 0.17911181, a: 1}
   Ambient_Intensity_Indoor: 0
   Fog_Enabled: 1
-  Fog_Colour: {r: 0.104303546, g: 0.1792453, b: 0.08032218, a: 0.39215687}
+  Fog_Colour: {r: 0.14235666, g: 0.23584908, b: 0.107912086, a: 0.39215687}
   Fog_Start: 0
   Fog_End: 18
