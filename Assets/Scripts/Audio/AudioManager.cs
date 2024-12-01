@@ -3,6 +3,7 @@ using Events;
 using UnityEngine;
 using Utility;
 using SceneManagement;
+using World;
 
 namespace Audio
 {
@@ -48,7 +49,6 @@ namespace Audio
         /// <param name="state">The state to set the AudioListener</param>
         public void EnableDefaultListener(bool state)
         {
-            PlayAmbient(state);
             if (!_audioListener) return;
             _audioListener.enabled = state;
         }
