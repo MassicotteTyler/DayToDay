@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f76d7dc5ead469f9930af9d5cb2c9a0, type: 3}
+  m_Name: Event_Audio_GreenMan
+  m_EditorClassIdentifier: 
+  Conditions:
+  - Expression: Player.JobCompleted == true && Player.HasSeenGreenMan == false
+  PossibleClips:
+  - {fileID: 8300000, guid: f7af31291f423764d909ff324804a09c, type: 3}
+  - {fileID: 8300000, guid: 03c46124d0589f74688639cc16265faa, type: 3}
+  - {fileID: 8300000, guid: 8d4194b7b4fa8bb44b79839e1cf486bc, type: 3}
+  Volume: 1
+  _audioEventType: 0
