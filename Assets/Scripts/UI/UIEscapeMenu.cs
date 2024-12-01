@@ -61,6 +61,7 @@ public class UIEscapeMenu : MonoBehaviour
         }
 
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         _showing = true;
     }
 
@@ -77,6 +78,7 @@ public class UIEscapeMenu : MonoBehaviour
         }
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         _showing = false;
     }
 
