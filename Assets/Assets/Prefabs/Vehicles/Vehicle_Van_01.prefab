@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 358082606371075374}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.865, y: -0.047999978, z: -0.23200002}
+  m_LocalPosition: {x: 4.351, y: 0.027, z: -0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.022006, y: 1, z: 3.7496662}
-  m_Center: {x: 0.51100403, y: 0, z: -0.10433005}
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2966737681508527157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +76,9 @@ MonoBehaviour:
   _eventsToTrigger:
   - {fileID: 11400000, guid: d11cd13dc198cdd41a7233ca86cc604c, type: 2}
   - {fileID: 11400000, guid: d64bdc29de80feb4ab1b3d7099793951, type: 2}
+  - {fileID: 11400000, guid: ee8e49d00e5c8cc4eb171dbeed04d303, type: 2}
+  - {fileID: 11400000, guid: 9e5d07d4ad338f040ac0ce0ad653d0c9, type: 2}
+  - {fileID: 11400000, guid: 81032aa4d1d090c4b86599922d8573df, type: 2}
 --- !u!1 &1019224182123041087
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 1019224182123041087}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.865, y: -0.047999978, z: -0.23200002}
+  m_LocalPosition: {x: 4.351, y: 0.027, z: -0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,8 +131,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.022006, y: 1, z: 3.7496662}
-  m_Center: {x: 0.51100403, y: 0, z: -0.10433005}
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5530852444932580348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +155,9 @@ MonoBehaviour:
   _destroyInvokingObject: 1
   _eventsToTrigger:
   - {fileID: 11400000, guid: 974a3507d244c304aa695149cc935753, type: 2}
+  - {fileID: 11400000, guid: 9e5d07d4ad338f040ac0ce0ad653d0c9, type: 2}
+  - {fileID: 11400000, guid: 81032aa4d1d090c4b86599922d8573df, type: 2}
+  - {fileID: 11400000, guid: aed2e577615f2d645b262c39cea2e7ba, type: 2}
   _tagsToTrigger:
   - NPC
 --- !u!1 &1645075320198597296
@@ -345,8 +351,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7, y: 1, z: 5}
-  m_Center: {x: 6.5, y: 1.5, z: 0}
+  m_Size: {x: 9, y: 1, z: 5}
+  m_Center: {x: 9.1, y: 1.5, z: 0}
 --- !u!1 &2389899980305231747
 GameObject:
   m_ObjectHideFlags: 0

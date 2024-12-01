@@ -445,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 4565801938351084986}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855698, y: -1, z: 0.000000081460335, w: -0.0000000754979}
-  m_LocalPosition: {x: -3.865, y: 0.08666641, z: -0.048000608}
+  m_LocalPosition: {x: -3.782, y: 0.09, z: -0}
   m_LocalScale: {x: 1, y: 1.111111, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -470,8 +470,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.022006, y: 1, z: 3.7496662}
-  m_Center: {x: 0.51100403, y: 0, z: -0.10433005}
+  m_Size: {x: 1, y: 1, z: 2.4168441}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3489025803217738747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +494,9 @@ MonoBehaviour:
   _eventsToTrigger:
   - {fileID: 11400000, guid: d11cd13dc198cdd41a7233ca86cc604c, type: 2}
   - {fileID: 11400000, guid: d64bdc29de80feb4ab1b3d7099793951, type: 2}
+  - {fileID: 11400000, guid: ee8e49d00e5c8cc4eb171dbeed04d303, type: 2}
+  - {fileID: 11400000, guid: 9e5d07d4ad338f040ac0ce0ad653d0c9, type: 2}
+  - {fileID: 11400000, guid: 81032aa4d1d090c4b86599922d8573df, type: 2}
 --- !u!1 &6612037064823546138
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,8 +688,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7, y: 1, z: 5}
-  m_Center: {x: 6.15, y: 1.5, z: 0}
+  m_Size: {x: 9, y: 1, z: 5}
+  m_Center: {x: 8.34, y: 1.5, z: 0}
 --- !u!1 &6930145534795166027
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 7020218482732153370}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855698, y: -1, z: 0.000000081460335, w: -0.0000000754979}
-  m_LocalPosition: {x: -3.865, y: 0.08666641, z: -0.048000608}
+  m_LocalPosition: {x: -3.782, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1.111111, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -965,8 +968,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.022006, y: 1, z: 3.7496662}
-  m_Center: {x: 0.51100403, y: 0, z: -0.10433005}
+  m_Size: {x: 1, y: 1, z: 2.4168441}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1029898361931101604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +992,9 @@ MonoBehaviour:
   _destroyInvokingObject: 1
   _eventsToTrigger:
   - {fileID: 11400000, guid: 974a3507d244c304aa695149cc935753, type: 2}
+  - {fileID: 11400000, guid: 9e5d07d4ad338f040ac0ce0ad653d0c9, type: 2}
+  - {fileID: 11400000, guid: 81032aa4d1d090c4b86599922d8573df, type: 2}
+  - {fileID: 11400000, guid: aed2e577615f2d645b262c39cea2e7ba, type: 2}
   _tagsToTrigger:
   - NPC
 --- !u!1 &7249839722233094043
