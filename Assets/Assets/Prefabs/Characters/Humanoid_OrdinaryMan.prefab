@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 8865759551052567957}
   m_Layer: 0
   m_Name: Humanoid_OrdinaryMan
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -39,6 +39,7 @@ Transform:
   - {fileID: 1216236541366465236}
   - {fileID: 5255426937085666845}
   - {fileID: 1675646848599123946}
+  - {fileID: 4389439527566445539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3933366271395940860
@@ -361,6 +362,84 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2793526559541189859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4389439527566445539}
+  - component: {fileID: 8728615192728562630}
+  - component: {fileID: 8921177965618489307}
+  m_Layer: 0
+  m_Name: TagTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4389439527566445539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793526559541189859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.865, y: 1.188, z: 0.048}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3649200205900699896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8728615192728562630
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793526559541189859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.022006, y: 1, z: 3.7496662}
+  m_Center: {x: 0.51100403, y: 0, z: -0.10433005}
+--- !u!114 &8921177965618489307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793526559541189859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fe46fcfb864462a3a79bb469e16b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnObjectEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnObjectExit:
+    m_PersistentCalls:
+      m_Calls: []
+  _isOneTimeTrigger: 0
+  _destroyInvokingObject: 1
+  _eventsToTrigger:
+  - {fileID: 11400000, guid: 974a3507d244c304aa695149cc935753, type: 2}
+  _tagsToTrigger:
+  - NPC
 --- !u!1 &2999641467335848750
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +1014,7 @@ MonoBehaviour:
       m_Calls: []
   _isOneTimeTrigger: 0
   _eventsToTrigger:
-  - {fileID: 11400000, guid: d11cd13dc198cdd41a7233ca86cc604c, type: 2}
+  - {fileID: 11400000, guid: 974a3507d244c304aa695149cc935753, type: 2}
 --- !u!1 &6091760686450728526
 GameObject:
   m_ObjectHideFlags: 0

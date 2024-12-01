@@ -53,4 +53,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Node/Bodega Nodes/Node_DirtyBodega.unity
     guid: 551edea9770062f43a1a69dad0ed06f3
+  - enabled: 1
+    path: Assets/Scenes/Node/End Nodes/Node_Jail.unity
+    guid: 5ccd1a9a6b4fb00429c1cb3dec216216
+  - enabled: 1
+    path: Assets/Scenes/UI/SUI_Jail.unity
+    guid: 0e37527c3a147dc4fab1d298ed067eda
   m_configObjects: {}

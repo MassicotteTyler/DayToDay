@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BodegaItem
   - BodegaTrash
+  - NPC
   layers:
   - Default
   - TransparentFX
