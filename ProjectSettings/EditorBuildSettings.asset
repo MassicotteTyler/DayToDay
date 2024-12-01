@@ -59,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/SUI_Jail.unity
     guid: 0e37527c3a147dc4fab1d298ed067eda
+  - enabled: 1
+    path: Assets/Scenes/Node/End Nodes/Node_Jail _Stealing.unity
+    guid: 5e96cda895e58ea4bb5f55d6c1567f8b
   m_configObjects: {}
