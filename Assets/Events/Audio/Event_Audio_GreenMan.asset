@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7af31291f423764d909ff324804a09c, type: 3}
   - {fileID: 8300000, guid: 03c46124d0589f74688639cc16265faa, type: 3}
   - {fileID: 8300000, guid: 8d4194b7b4fa8bb44b79839e1cf486bc, type: 3}
-  Volume: 1
+  Volume: 0.78
   _audioEventType: 0
