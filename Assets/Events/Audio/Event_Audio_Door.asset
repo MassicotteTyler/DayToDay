@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_Door
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 048b0a0671c6bb54890a686d5c844aa2, type: 3}
+  PossibleClips:
+  - {fileID: 8300000, guid: 048b0a0671c6bb54890a686d5c844aa2, type: 3}
   Volume: 1
   _audioEventType: 1

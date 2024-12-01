@@ -258,6 +258,7 @@ MonoBehaviour:
   headBobSprintDuration: 1.45
   headBobSprintIntensity: 0.0675
   sprintKey: 304
+  FootStepAudioEvent: {fileID: 11400000, guid: 5de26200569b6c74d9ae85c58aa06e38, type: 2}
 --- !u!54 &4525300152234574523
 Rigidbody:
   m_ObjectHideFlags: 0

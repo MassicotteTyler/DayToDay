@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_Ambient_TitleScreen
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: fc4aaef25ae3ce744b85c57da56d6bed, type: 3}
+  PossibleClips:
+  - {fileID: 8300000, guid: fc4aaef25ae3ce744b85c57da56d6bed, type: 3}
   Volume: 0.3
   _audioEventType: 2

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_PutAwayItem
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 9ddcdea466461754093ebcdd8b85e19f, type: 3}
+  PossibleClips:
+  - {fileID: 8300000, guid: 9ddcdea466461754093ebcdd8b85e19f, type: 3}
   Volume: 1
   _audioEventType: 1

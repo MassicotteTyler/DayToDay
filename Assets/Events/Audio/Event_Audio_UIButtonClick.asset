@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Event_Audio_UIButtonClick
   m_EditorClassIdentifier: 
   Conditions: []
-  Clip: {fileID: 8300000, guid: 148b5640a9590a44c9d47c112df14c37, type: 3}
+  PossibleClips:
+  - {fileID: 8300000, guid: 148b5640a9590a44c9d47c112df14c37, type: 3}
   Volume: 1
   _audioEventType: 0

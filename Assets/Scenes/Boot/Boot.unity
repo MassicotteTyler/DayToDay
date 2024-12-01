@@ -159,6 +159,7 @@ MonoBehaviour:
   defaultUIScene:
     asset: {fileID: 102900000, guid: bf26b4ea43cc3f147933d81e13979c69, type: 3}
     guid: bf26b4ea43cc3f147933d81e13979c69
+  EndScene: {fileID: 11400000, guid: cf7356a6196defe41b8bfc1e97b105db, type: 2}
   SceneGroups:
   - {fileID: 11400000, guid: f001e7a29702d3f40a76643041d2ad51, type: 2}
   - {fileID: 11400000, guid: a2c53cf588b502545b3a897e80bbc098, type: 2}

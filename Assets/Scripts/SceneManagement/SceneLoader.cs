@@ -52,6 +52,11 @@ namespace SceneManagement
         /// The default UI scene to load.
         /// </summary>
         [SerializeField] private SceneReference defaultUIScene;
+
+        /// <summary>
+        /// Scene for the Ending.
+        /// </summary>
+        [SerializeField] SceneGroup EndScene;
         
         /// <summary>
         /// The array of scene groups to be loaded.
@@ -143,24 +148,6 @@ namespace SceneManagement
         private IEnumerator LoadSceneGroup(SceneGroup group)
         {
             yield return LoadSceneGroup(group, null);
-            // _activeSceneGroup = group;
-            // LoadingProgress progress = new LoadingProgress();
-            // progress.OnProgress += target => targetProgress = Mathf.Max(target, targetProgress);
-            //
-            // // Check if there is a UI Scene to load, otherwise insert default UI Scene
-            // if (string.IsNullOrWhiteSpace(group.FindSceneNameByType(SceneType.UserInterface)))
-            // {
-            //     var uiScene = new SceneData()
-            //     {
-            //         Reference = defaultUIScene,
-            //         SceneType = SceneType.UserInterface
-            //     };
-            //     group.Scenes.Add(uiScene);
-            // }
-            //
-            // await EnableLoadingCanvas();
-            // await SceneGroupManager.LoadScenes(group, progress);
-            // await EnableLoadingCanvas(false);
         }
         
         private IEnumerator LoadSceneGroup(SceneGroup group, Action onComplete)
@@ -253,26 +240,14 @@ namespace SceneManagement
         /// </summary>
         public void EndNode()
         {
+            if (PlayerManager.Instance.IsGameEnded)
+            {
+                return;
+            }
             // Determine the next node
             // TODO: Currently just reloading the active scene group
             _nextSceneGroup = DetermineNextNode();
 
-            if (_nextSceneGroup == _activeSceneGroup)
-            {
-                // TODO Disabling this until we commit to fixing on WEBGL
-                // Reload active scene through the bootstrapper
-                // UIManager.Instance.OnNodeTransitionStart?.Invoke();
-                // StartCoroutine(TransitionDelay(() =>
-                // {
-                //     EnableLoadingCanvas();
-                //     SceneManager.LoadScene(0);
-                //     EnableLoadingCanvas(false);
-                //     // TODO: This is broken on WebGL for some reason
-                //     // UIManager.Instance.OnNodeTransitionEnd?.Invoke();
-                // }));
-                // return;
-            }
-            
             // Load the next node
             StartCoroutine(LoadSceneGroup(_nextSceneGroup));
         }
@@ -294,6 +269,12 @@ namespace SceneManagement
         public SceneData GetSubSceneData(SubSceneType sceneType)
         {
             return _activeSceneGroup.FindSceneBySubType(sceneType);
+        }
+
+        public void EndGame()
+        {
+            // Load the end scene
+            StartCoroutine(LoadSceneGroup(EndScene));
         }
     }
 

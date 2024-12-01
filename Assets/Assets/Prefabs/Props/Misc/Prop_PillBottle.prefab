@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 7841815378611942642}
   - component: {fileID: 4551826206583380150}
   - component: {fileID: 817862393207451582}
+  - component: {fileID: 1034275963798888632}
+  - component: {fileID: 5067937077141175729}
   m_Layer: 0
   m_Name: Prop_PillBottle
   m_TagString: Untagged
@@ -187,5 +189,54 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020784568, y: 0.046354283, z: 0.023999967}
-  m_Center: {x: 0, y: 0.023177138, z: -0.0000000041909516}
+  m_Size: {x: 0.08702436, y: 0.046354283, z: 0.117665485}
+  m_Center: {x: 0.0046047033, y: 0.023177132, z: -0.0032450778}
+--- !u!114 &1034275963798888632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339315776893702021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e347a40eb645f9b4388562ea21fe51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 817862393207451582}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onObserve:
+    m_PersistentCalls:
+      m_Calls: []
+  onStopObserving:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionLabel: Take Pills
+  InteractionEvents:
+  - {fileID: 11400000, guid: 06d85f7d77c25dd47b75f4edf3dc6ec6, type: 2}
+  ObservationEvents: []
+--- !u!114 &5067937077141175729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339315776893702021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fc0e449ada4ce0bb236e1aef181ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

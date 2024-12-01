@@ -32,10 +32,10 @@ namespace Events
         public static Action<AudioClip, float> OnSetAmbientEvent;
 
         /// <summary>
-        /// The audio clip to play.
+        /// The audio clips to play at random.
         /// </summary>
-        [Tooltip("Audio clip source")]
-        [SerializeField] public AudioClip Clip;
+        [Tooltip("Audio clip sources")]
+        [SerializeField] public AudioClip[] PossibleClips;
 
         /// <summary>
         /// The playback volume
@@ -57,15 +57,25 @@ namespace Events
             {
                 case AudioEventType.PlayAtPosition:
                     if(invoker)
-                        OnPlayAudioClipAtPositionEvent?.Invoke(Clip, invoker.transform.position, Volume);
+                        OnPlayAudioClipAtPositionEvent?.Invoke(GetRandomClip(), invoker.transform.position, Volume);
                     break;
                 case AudioEventType.SetAmbient:
-                    OnSetAmbientEvent?.Invoke(Clip, Volume);
+                    OnSetAmbientEvent?.Invoke(GetRandomClip(), Volume);
                     break;
                 default: //PlayOnce
-                    OnPlayAudioClipEvent?.Invoke(Clip, Volume);
+                    OnPlayAudioClipEvent?.Invoke(GetRandomClip(), Volume);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Get a random clip using UnityEngine.Random
+        /// </summary>
+        AudioClip GetRandomClip()
+        {
+            if (PossibleClips == null || PossibleClips.Length <= 0) return null;
+
+            return PossibleClips[UnityEngine.Random.Range(0, PossibleClips.Length)];
         }
     }
 }
